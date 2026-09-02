@@ -1,31 +1,30 @@
 # Weekly Team Update
-**Week/Date:** Week 1, 2026-09-02
+**Week/Date:** 
 
 #### COMPLETED
 *What meaningful work did the team finish or advance this week? Focus on results, not just activity.*
 
-- Requirements gathering from the project partner
-- Local development environment setup completed
+- 
 
 #### WORKING ON
 *What is the team actively working on now?*
 
-- Page layout for the project — determining what pages are planned to be built and what features/content will be on each page
+- 
 
 #### BLOCKED/NEED HELP
 *What is slowing or preventing progress? What help, decision, access, part, information, or action is needed? Write 'None' if there is no meaningful blocker.*
 
-- None
+- 
 
 #### NEXT TEAM PRIORITY
 *What is the most important thing the team needs to accomplish before the next update?*
 
-- Get an MVP design of what the client wants — plan to have an HTML/Figma-type design by next week
+- 
 
 #### EVIDENCE/LINK
 *Optional: link to code, CAD, test results, prototype photos, calculations, requirements, ADRs, or other project evidence.*
 
-- N/A
+- 
 
 ---
 
@@ -34,8 +33,8 @@
 
 | Team Member | Contribution/Ownership This Week | Blocker or Next Step |
 | ----------- | -------------------------------- | -------------------- |
-| Brain Ayo | Met with client, requirements gathering (virtual), local dev environment setup | No blockers |
-| Trisha Chalikandi | Met with client, requirements gathering (virtual), local dev environment setup | No blockers |
-| Haya Aman | Met with client, requirements gathering (virtual), local dev environment setup | No blockers |
-| Mateo Irizarry | Met with client, requirements gathering (virtual), local dev environment setup | No blockers |
-| Neelesh Polireddy | Met with client, requirements gathering (virtual), local dev environment setup | No blockers |
+|             |                                  |                      |
+|             |                                  |                      |
+|             |                                  |                      |
+|             |                                  |                      |
+|             |                                  |                      |
