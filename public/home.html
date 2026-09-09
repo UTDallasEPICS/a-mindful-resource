@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+
+      --gold: #c89545;
+      --gold-hover: #b98538;
+
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+
+      --white: #fcfaf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    .submit-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      border-radius: 6px;
+      padding: 10px 17px;
+      font-weight: 700;
+    }
+
+    .submit-button:hover {
+      background: var(--gold-hover);
+      text-decoration: none;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .hero {
+      background: var(--forest);
+      color: var(--white);
+      padding: 95px 28px 100px;
+    }
+
+    .hero-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      color: #d7aa62;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      max-width: 700px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 62px;
+      line-height: 1.04;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin-top: 24px;
+      color: #d7e0da;
+      font-size: 18px;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      display: inline-block;
+      padding: 13px 21px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .primary-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+    }
+
+    .primary-button:hover {
+      background: var(--gold-hover);
+    }
+
+    .secondary-button {
+      border: 1px solid #9cb0a6;
+      color: var(--white);
+    }
+
+    .secondary-button:hover {
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* ---------- HERO FEATURE CARD ---------- */
+
+    .hero-card {
+      background: var(--cream-light);
+      color: var(--text-dark);
+      border-radius: 14px;
+      padding: 30px;
+      box-shadow: 0 18px 40px rgba(18, 43, 35, 0.22);
+    }
+
+    .hero-card-label {
+      color: #9a7135;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-weight: bold;
+    }
+
+    .hero-card h2 {
+      margin-top: 11px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 29px;
+      font-weight: normal;
+      line-height: 1.2;
+    }
+
+    .hero-card p {
+      margin-top: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-size: 14px;
+    }
+
+    .quick-search {
+      margin-top: 22px;
+    }
+
+    .quick-search label {
+      display: block;
+      margin-bottom: 7px;
+      color: #586b61;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .quick-search input {
+      width: 100%;
+      height: 46px;
+      padding: 0 12px;
+      border: 1px solid #cbd4ce;
+      border-radius: 6px;
+      background: #fffdf8;
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+
+    .quick-search a {
+      display: block;
+      margin-top: 12px;
+      background: var(--forest);
+      color: var(--white);
+      padding: 12px;
+      border-radius: 6px;
+      text-align: center;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    /* ---------- INTRO ---------- */
+
+    .intro {
+      max-width: 1200px;
+      margin: auto;
+      padding: 80px 28px 55px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: #9a7135;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1.6px;
+      font-weight: bold;
+    }
+
+    .intro h2 {
+      max-width: 700px;
+      margin: 12px auto 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 43px;
+      line-height: 1.15;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .intro-description {
+      max-width: 700px;
+      margin: 18px auto 0;
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ---------- FEATURE CARDS ---------- */
+
+    .features {
+      max-width: 1200px;
+      margin: auto;
+      padding: 15px 28px 85px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .feature-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 5px 18px rgba(25, 58, 48, 0.05);
+    }
+
+    .feature-number {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: var(--sage-light);
+      color: var(--forest);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      margin-bottom: 18px;
+    }
+
+    .feature-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest-deep);
+      font-size: 24px;
+      font-weight: normal;
+    }
+
+    .feature-card p {
+      margin-top: 11px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .feature-card a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #80602e;
+      font-weight: bold;
+      font-size: 13px;
+      text-decoration: none;
+    }
+
+    .feature-card a:hover {
+      text-decoration: underline;
+    }
+
+    /* ---------- TRUST SECTION ---------- */
+
+    .trust {
+      background: var(--sage-light);
+      padding: 80px 28px;
+    }
+
+    .trust-content {
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .trust h2 {
+      margin-top: 11px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .trust-description {
+      margin-top: 18px;
+      color: #56695f;
+      line-height: 1.7;
+    }
+
+    .trust-points {
+      display: grid;
+      gap: 13px;
+    }
+
+    .trust-point {
+      background: rgba(250, 247, 240, 0.75);
+      border-radius: 9px;
+      padding: 18px 20px;
+    }
+
+    .trust-point strong {
+      display: block;
+      color: var(--forest-deep);
+      margin-bottom: 5px;
+    }
+
+    .trust-point span {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    /* ---------- CTA ---------- */
+
+    .cta {
+      background: var(--cream);
+      padding: 80px 28px;
+      text-align: center;
+    }
+
+    .cta h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 15px auto 25px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      color: #d7e0da;
+      padding: 30px 28px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      color: var(--white);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .hero-content,
+      .trust-content {
+        grid-template-columns: 1fr;
+      }
+
+      h1 {
+        font-size: 44px;
+      }
+
+      .features {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+      }
+
+      .primary-button,
+      .secondary-button {
+        text-align: center;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="navbar">
+
+      <a href="home.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="hayas-prototype.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Map</a>
+        <a href="about.html">About</a>
+        <a href="#" class="submit-button">Submit a Resource</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+
+    <div class="hero-content">
+
+      <div>
+        <p class="eyebrow">Care starts with connection</p>
+
+        <h1>
+          Finding support should feel a little easier.
+        </h1>
+
+        <p class="hero-description">
+          Discover mental health resources near you based on location,
+          insurance, specialty, and whether you prefer virtual or
+          in-person care.
+        </p>
+
+        <div class="hero-buttons">
+
+          <a href="hayas-prototype.html" class="primary-button">
+            Find Support Near Me
+          </a>
+
+          <a href="directory.html" class="secondary-button">
+            Browse Directory
+          </a>
+
+        </div>
+      </div>
+
+      <!-- Quick Find Card -->
+      <div class="hero-card">
+
+        <p class="hero-card-label">
+          Start with your location
+        </p>
+
+        <h2>
+          See support options near you.
+        </h2>
+
+        <p>
+          Enter your ZIP code to begin exploring nearby mental
+          health resources.
+        </p>
+
+        <div class="quick-search">
+
+          <label>ZIP CODE</label>
+
+          <input
+            type="text"
+            placeholder="Enter ZIP code"
+          />
+
+          <a href="hayas-prototype.html">
+            Search Nearby Resources
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Intro -->
+  <section class="intro">
+
+    <p class="section-label">
+      Find what works for you
+    </p>
+
+    <h2>
+      Support should match your needs, not the other way around.
+    </h2>
+
+    <p class="intro-description">
+      A Mindful Resource helps make it easier to discover,
+      compare, and connect with mental health resources in your area.
+    </p>
+
+  </section>
+
+  <!-- Main Features -->
+  <section class="features">
+
+    <div class="feature-card">
+
+      <div class="feature-number">01</div>
+
+      <h3>Find Support</h3>
+
+      <p>
+        Search based on your location, insurance, specialty,
+        and preferred type of care to see the closest matching services.
+      </p>
+
+      <a href="hayas-prototype.html">
+        Start searching →
+      </a>
+
+    </div>
+
+    <div class="feature-card">
+
+      <div class="feature-number">02</div>
+
+      <h3>Browse the Directory</h3>
+
+      <p>
+        Explore all listed resources and compare locations,
+        contact information, specialties, insurance, and hours.
+      </p>
+
+      <a href="directory.html">
+        Browse resources →
+      </a>
+
+    </div>
+
+    <div class="feature-card">
+
+      <div class="feature-number">03</div>
+
+      <h3>Explore the Map</h3>
+
+      <p>
+        See resources geographically and quickly understand
+        which services are closest to your location.
+      </p>
+
+      <a href="map.html">
+        View the map →
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- Trust -->
+  <section class="trust">
+
+    <div class="trust-content">
+
+      <div>
+
+        <p class="section-label">
+          Resources you can understand
+        </p>
+
+        <h2>
+          Clear information before you reach out.
+        </h2>
+
+        <p class="trust-description">
+          Each listing is designed to show the information that matters
+          when deciding whether a resource may be right for you.
+        </p>
+
+      </div>
+
+      <div class="trust-points">
+
+        <div class="trust-point">
+          <strong>Location & availability</strong>
+          <span>
+            See where a resource is located and whether support is
+            offered in-person, virtually, or both.
+          </span>
+        </div>
+
+        <div class="trust-point">
+          <strong>Insurance & specialties</strong>
+          <span>
+            Compare accepted insurance and areas of support
+            before contacting a provider.
+          </span>
+        </div>
+
+        <div class="trust-point">
+          <strong>Contact information & hours</strong>
+          <span>
+            Quickly find phone numbers, websites, and operating hours.
+          </span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- Bottom CTA -->
+  <section class="cta">
+
+    <h2>
+      Ready to find support?
+    </h2>
+
+    <p>
+      Start with a personalized search or browse the full
+      resource directory.
+    </p>
+
+    <div class="hero-buttons" style="justify-content: center;">
+
+      <a href="hayas-prototype.html" class="primary-button">
+        Find Support
+      </a>
+
+      <a
+        href="directory.html"
+        class="secondary-button"
+        style="color: #193a30; border-color: #8fa397;"
+      >
+        Browse Directory
+      </a>
+
+    </div>
+
+  </section>
+
+  <!-- Footer -->
+  <footer>
+
+    <div class="footer-content">
+
+      <div class="footer-logo">
+        A Mindful Resource
+      </div>
+
+      <div>
+        Connecting communities with support.
+      </div>
+
+    </div>
+
+  </footer>
+
+</body>
+</html>

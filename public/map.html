@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Mindful Resource | Map</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+
+      --gold: #c89545;
+      --gold-hover: #b98538;
+
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+
+      --white: #fcfaf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .submit-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      border-radius: 6px;
+      padding: 10px 17px;
+      font-weight: 700;
+    }
+
+    .submit-button:hover {
+      background: var(--gold-hover);
+      color: var(--forest-deep);
+      text-decoration: none;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .page-hero {
+      background: var(--forest);
+      color: var(--white);
+      padding: 65px 28px;
+    }
+
+    .page-hero-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: #d7aa62;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 52px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 700px;
+      margin-top: 18px;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ---------- MAP SECTION ---------- */
+
+    .map-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 50px 28px 90px;
+    }
+
+    .map-toolbar {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 20px;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr auto;
+      gap: 12px;
+      align-items: end;
+      box-shadow: 0 5px 18px rgba(25, 58, 48, 0.05);
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #586b61;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #cbd4ce;
+      border-radius: 6px;
+      background: #fffdf8;
+      padding: 0 12px;
+      color: var(--text-dark);
+      font-size: 14px;
+    }
+
+    .map-search-button {
+      height: 46px;
+      padding: 0 22px;
+      border: none;
+      border-radius: 6px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .map-search-button:hover {
+      background: var(--gold-hover);
+    }
+
+    /* ---------- MAP LAYOUT ---------- */
+
+    .map-layout {
+      margin-top: 25px;
+      display: grid;
+      grid-template-columns: 360px 1fr;
+      min-height: 650px;
+      border: 1px solid #d6dcd7;
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--cream-light);
+      box-shadow: 0 8px 24px rgba(25, 58, 48, 0.07);
+    }
+
+    /* ---------- SIDEBAR ---------- */
+
+    .resource-sidebar {
+      padding: 22px;
+      background: #f8f4eb;
+      overflow-y: auto;
+      border-right: 1px solid #d6dcd7;
+    }
+
+    .sidebar-top {
+      margin-bottom: 20px;
+    }
+
+    .sidebar-top p {
+      color: #9a7135;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .sidebar-top h2 {
+      margin-top: 7px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest-deep);
+      font-size: 28px;
+      font-weight: normal;
+    }
+
+    .sidebar-top span {
+      display: block;
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    .sidebar-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 10px;
+      padding: 16px;
+      margin-bottom: 12px;
+      cursor: pointer;
+    }
+
+    .sidebar-card:hover {
+      border-color: var(--sage);
+      box-shadow: 0 4px 12px rgba(25, 58, 48, 0.06);
+    }
+
+    .sidebar-card.active-card {
+      border: 2px solid var(--forest);
+    }
+
+    .sidebar-number {
+      width: 25px;
+      height: 25px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: bold;
+      margin-bottom: 9px;
+    }
+
+    .sidebar-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 18px;
+      color: var(--forest-deep);
+      font-weight: normal;
+    }
+
+    .sidebar-card .distance {
+      margin-top: 5px;
+      color: #946c31;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .sidebar-card .details {
+      margin-top: 8px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-top: 10px;
+    }
+
+    .tag {
+      background: var(--sage-light);
+      color: #365448;
+      padding: 5px 7px;
+      border-radius: 14px;
+      font-size: 10px;
+      font-weight: 600;
+    }
+
+    /* ---------- FAKE MAP ---------- */
+
+    .map-canvas {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(255,255,255,0.22), rgba(255,255,255,0.22)),
+        repeating-linear-gradient(
+          45deg,
+          #dfe6df 0px,
+          #dfe6df 24px,
+          #e9eee9 24px,
+          #e9eee9 48px
+        );
+    }
+
+    .map-canvas::before {
+      content: "";
+      position: absolute;
+      width: 120%;
+      height: 120%;
+      left: -10%;
+      top: -10%;
+      background:
+        linear-gradient(18deg, transparent 47%, #c6d0ca 48%, #c6d0ca 50%, transparent 51%),
+        linear-gradient(78deg, transparent 46%, #cbd4ce 47%, #cbd4ce 49%, transparent 50%),
+        linear-gradient(135deg, transparent 47%, #c4cec8 48%, #c4cec8 50%, transparent 51%);
+      opacity: 0.8;
+    }
+
+    .map-label {
+      position: absolute;
+      z-index: 2;
+      color: #718078;
+      font-size: 12px;
+      font-weight: bold;
+      background: rgba(250, 247, 240, 0.75);
+      padding: 4px 7px;
+      border-radius: 4px;
+    }
+
+    .label-richardson {
+      left: 38%;
+      top: 20%;
+    }
+
+    .label-dallas {
+      left: 38%;
+      top: 61%;
+    }
+
+    .label-plano {
+      right: 18%;
+      top: 12%;
+    }
+
+    .label-addison {
+      left: 15%;
+      top: 43%;
+    }
+
+    .user-location {
+      position: absolute;
+      z-index: 4;
+      left: 43%;
+      top: 45%;
+      transform: translate(-50%, -50%);
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #4c779f;
+      border: 4px solid #dbeaf7;
+      box-shadow: 0 0 0 4px rgba(76, 119, 159, 0.15);
+    }
+
+    .user-location-label {
+      position: absolute;
+      z-index: 4;
+      left: 43%;
+      top: calc(45% + 18px);
+      transform: translateX(-50%);
+      background: var(--cream-light);
+      border: 1px solid #cbd4ce;
+      border-radius: 5px;
+      padding: 5px 8px;
+      font-size: 11px;
+      color: var(--text-dark);
+      white-space: nowrap;
+    }
+
+    .marker {
+      position: absolute;
+      z-index: 5;
+      width: 34px;
+      height: 34px;
+      border-radius: 50% 50% 50% 0;
+      background: var(--gold);
+      color: var(--forest-deep);
+      transform: rotate(-45deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 10px rgba(25, 58, 48, 0.16);
+      border: 2px solid var(--cream-light);
+    }
+
+    .marker span {
+      transform: rotate(45deg);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .marker-1 {
+      left: 31%;
+      top: 30%;
+    }
+
+    .marker-2 {
+      left: 54%;
+      top: 35%;
+    }
+
+    .marker-3 {
+      left: 63%;
+      top: 54%;
+    }
+
+    .marker-4 {
+      left: 25%;
+      top: 55%;
+    }
+
+    .marker-5 {
+      left: 72%;
+      top: 26%;
+    }
+
+    .map-key {
+      position: absolute;
+      z-index: 6;
+      right: 18px;
+      bottom: 18px;
+      background: rgba(250, 247, 240, 0.95);
+      border: 1px solid #d1d8d3;
+      border-radius: 8px;
+      padding: 10px 12px;
+      color: var(--text-muted);
+      font-size: 11px;
+      box-shadow: 0 4px 12px rgba(25, 58, 48, 0.08);
+    }
+
+    .map-key strong {
+      display: block;
+      color: var(--forest-deep);
+      margin-bottom: 4px;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      color: #d7e0da;
+      padding: 30px 28px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      color: var(--white);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 900px) {
+      nav {
+        display: none;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .map-toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      .map-layout {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-sidebar {
+        border-right: none;
+        border-bottom: 1px solid #d6dcd7;
+      }
+
+      .map-canvas {
+        min-height: 500px;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="navbar">
+
+      <a href="home.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="hayas-prototype.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html" class="active">Map</a>
+        <a href="about.html">About</a>
+        <a href="#" class="submit-button">Submit a Resource</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+    <div class="page-hero-content">
+
+      <p class="eyebrow">
+        Interactive Resource Map
+      </p>
+
+      <h1>
+        See support around you.
+      </h1>
+
+      <p class="hero-description">
+        Explore nearby mental health resources by location and compare
+        distance, specialty, insurance, and virtual or in-person availability.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- Map Content -->
+  <main class="map-section">
+
+    <!-- Filters -->
+    <div class="map-toolbar">
+
+      <div class="field">
+        <label>ZIP CODE OR LOCATION</label>
+        <input type="text" placeholder="Enter ZIP code or city" />
+      </div>
+
+      <div class="field">
+        <label>SPECIALTY</label>
+
+        <select>
+          <option>All specialties</option>
+          <option>Anxiety</option>
+          <option>Depression</option>
+          <option>Trauma</option>
+          <option>Family Therapy</option>
+          <option>Grief</option>
+          <option>Relationships</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>CARE TYPE</label>
+
+        <select>
+          <option>Any type</option>
+          <option>In-person</option>
+          <option>Virtual</option>
+          <option>Both</option>
+        </select>
+      </div>
+
+      <button class="map-search-button">
+        Update Map
+      </button>
+
+    </div>
+
+    <!-- Map + Sidebar -->
+    <div class="map-layout">
+
+      <!-- Results List -->
+      <aside class="resource-sidebar">
+
+        <div class="sidebar-top">
+          <p>Resources Near You</p>
+
+          <h2>
+            5 nearby options
+          </h2>
+
+          <span>
+            Select a resource to locate it on the map.
+          </span>
+        </div>
+
+        <div class="sidebar-card active-card">
+          <div class="sidebar-number">1</div>
+
+          <h3>
+            North Dallas Counseling Center
+          </h3>
+
+          <div class="distance">
+            1.2 miles away
+          </div>
+
+          <div class="details">
+            Richardson, TX 75080<br>
+            In-person & Virtual
+          </div>
+
+          <div class="tags">
+            <span class="tag">Anxiety</span>
+            <span class="tag">Trauma</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-number">2</div>
+
+          <h3>
+            Hope Community Wellness
+          </h3>
+
+          <div class="distance">
+            2.4 miles away
+          </div>
+
+          <div class="details">
+            Richardson, TX 75081<br>
+            In-person
+          </div>
+
+          <div class="tags">
+            <span class="tag">Family Therapy</span>
+            <span class="tag">Grief</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-number">3</div>
+
+          <h3>
+            Serenity Behavioral Health
+          </h3>
+
+          <div class="distance">
+            3.1 miles away
+          </div>
+
+          <div class="details">
+            Dallas, TX 75243<br>
+            In-person & Virtual
+          </div>
+
+          <div class="tags">
+            <span class="tag">Anxiety</span>
+            <span class="tag">PTSD</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-number">4</div>
+
+          <h3>
+            New Leaf Therapy Collective
+          </h3>
+
+          <div class="distance">
+            4.6 miles away
+          </div>
+
+          <div class="details">
+            Plano, TX 75075<br>
+            Virtual
+          </div>
+
+          <div class="tags">
+            <span class="tag">Depression</span>
+            <span class="tag">Relationships</span>
+          </div>
+        </div>
+
+        <div class="sidebar-card">
+          <div class="sidebar-number">5</div>
+
+          <h3>
+            Oak & Sage Counseling
+          </h3>
+
+          <div class="distance">
+            5.3 miles away
+          </div>
+
+          <div class="details">
+            Addison, TX 75001<br>
+            In-person & Virtual
+          </div>
+
+          <div class="tags">
+            <span class="tag">Trauma</span>
+            <span class="tag">Couples</span>
+          </div>
+        </div>
+
+      </aside>
+
+      <!-- Prototype Map -->
+      <div class="map-canvas">
+
+        <span class="map-label label-richardson">
+          RICHARDSON
+        </span>
+
+        <span class="map-label label-dallas">
+          DALLAS
+        </span>
+
+        <span class="map-label label-plano">
+          PLANO
+        </span>
+
+        <span class="map-label label-addison">
+          ADDISON
+        </span>
+
+        <div class="user-location"></div>
+
+        <div class="user-location-label">
+          Your location
+        </div>
+
+        <div class="marker marker-1">
+          <span>1</span>
+        </div>
+
+        <div class="marker marker-2">
+          <span>2</span>
+        </div>
+
+        <div class="marker marker-3">
+          <span>3</span>
+        </div>
+
+        <div class="marker marker-4">
+          <span>4</span>
+        </div>
+
+        <div class="marker marker-5">
+          <span>5</span>
+        </div>
+
+        <div class="map-key">
+          <strong>Prototype Map</strong>
+          Markers represent nearby resources.
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+
+      <div class="footer-logo">
+        A Mindful Resource
+      </div>
+
+      <div>
+        Connecting communities with support.
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

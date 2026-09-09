@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Mindful Resource | Directory</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+
+      --gold: #c89545;
+      --gold-hover: #b98538;
+
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+
+      --white: #fcfaf5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    /* ---------- HEADER ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      text-decoration: none;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+      text-decoration: underline;
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .submit-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      border-radius: 6px;
+      padding: 10px 17px;
+      font-weight: 700;
+    }
+
+    .submit-button:hover {
+      background: var(--gold-hover);
+      color: var(--forest-deep);
+      text-decoration: none;
+    }
+
+    /* ---------- PAGE HERO ---------- */
+
+    .page-hero {
+      background: var(--forest);
+      color: var(--white);
+      padding: 70px 28px;
+    }
+
+    .page-hero-content {
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .eyebrow {
+      color: #d7aa62;
+      font-size: 13px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h1 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 52px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 700px;
+      margin-top: 18px;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ---------- DIRECTORY ---------- */
+
+    .directory {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 28px 90px;
+    }
+
+    /* ---------- FILTERS ---------- */
+
+    .filters {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 22px;
+      box-shadow: 0 5px 18px rgba(25, 58, 48, 0.05);
+    }
+
+    .search-bar {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 12px;
+    }
+
+    .field label {
+      display: block;
+      margin-bottom: 7px;
+      color: #586b61;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .field input,
+    .field select {
+      width: 100%;
+      height: 46px;
+      border: 1px solid #cbd4ce;
+      border-radius: 6px;
+      background: #fffdf8;
+      color: var(--text-dark);
+      padding: 0 12px;
+      font-size: 14px;
+    }
+
+    .field input:focus,
+    .field select:focus {
+      outline: 2px solid var(--sage);
+      outline-offset: 1px;
+    }
+
+    /* ---------- DIRECTORY HEADER ---------- */
+
+    .directory-heading {
+      margin-top: 45px;
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .section-label {
+      color: #9a7135;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .directory-heading h2 {
+      margin-top: 8px;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--forest-deep);
+      font-size: 37px;
+      font-weight: normal;
+    }
+
+    .results-count {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ---------- RESOURCE GRID ---------- */
+
+    .resource-grid {
+      margin-top: 26px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .resource-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 5px 18px rgba(25, 58, 48, 0.05);
+    }
+
+    .resource-card:hover {
+      box-shadow: 0 8px 22px rgba(25, 58, 48, 0.09);
+    }
+
+    .resource-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 18px;
+    }
+
+    .resource-name {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 24px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .verified {
+      background: var(--sage-light);
+      color: #365448;
+      border-radius: 20px;
+      padding: 6px 9px;
+      font-size: 11px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    .address {
+      margin-top: 7px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .tags {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .tag {
+      background: var(--sage-light);
+      color: #365448;
+      padding: 6px 9px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .tag.gold {
+      background: #eee0c6;
+      color: #795823;
+    }
+
+    .description {
+      margin-top: 16px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .resource-info {
+      margin-top: 18px;
+      border-top: 1px solid #e1e4e1;
+      padding-top: 16px;
+      display: grid;
+      gap: 8px;
+      color: #4d6258;
+      font-size: 13px;
+    }
+
+    .card-buttons {
+      margin-top: 20px;
+      display: flex;
+      gap: 10px;
+    }
+
+    .details-button,
+    .map-button {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .details-button {
+      background: var(--forest);
+      color: var(--white);
+    }
+
+    .details-button:hover {
+      background: var(--forest-deep);
+    }
+
+    .map-button {
+      border: 1px solid #9baca3;
+      color: var(--forest);
+      background: transparent;
+    }
+
+    .map-button:hover {
+      background: var(--sage-light);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      color: #d7e0da;
+      padding: 30px 28px;
+    }
+
+    .footer-content {
+      max-width: 1200px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+    }
+
+    .footer-logo {
+      color: var(--white);
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      h1 {
+        font-size: 42px;
+      }
+
+      .search-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .directory-heading {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navigation -->
+  <header>
+    <div class="navbar">
+
+      <a href="home.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="hayas-prototype.html">Find Support</a>
+        <a href="directory.html" class="active">Directory</a>
+        <a href="map.html">Map</a>
+        <a href="about.html">About</a>
+        <a href="#" class="submit-button">Submit a Resource</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="page-hero">
+
+    <div class="page-hero-content">
+
+      <p class="eyebrow">
+        Resource Directory
+      </p>
+
+      <h1>
+        Explore support at your own pace.
+      </h1>
+
+      <p class="hero-description">
+        Browse available mental health resources and compare specialties,
+        insurance, contact information, availability, and location.
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- Directory -->
+  <main class="directory">
+
+    <!-- Filters -->
+    <div class="filters">
+
+      <div class="search-bar">
+
+        <div class="field">
+          <label>SEARCH RESOURCES</label>
+
+          <input
+            type="text"
+            placeholder="Search by name or keyword"
+          />
+        </div>
+
+        <div class="field">
+          <label>SPECIALTY</label>
+
+          <select>
+            <option>All specialties</option>
+            <option>Anxiety</option>
+            <option>Depression</option>
+            <option>Trauma</option>
+            <option>Family Therapy</option>
+            <option>Grief</option>
+            <option>Relationships</option>
+            <option>LGBTQ+ Support</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>INSURANCE</label>
+
+          <select>
+            <option>Any insurance</option>
+            <option>Aetna</option>
+            <option>Blue Cross Blue Shield</option>
+            <option>Cigna</option>
+            <option>Medicaid</option>
+            <option>UnitedHealthcare</option>
+            <option>Other</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label>CARE TYPE</label>
+
+          <select>
+            <option>Any type</option>
+            <option>In-person</option>
+            <option>Virtual</option>
+            <option>Both</option>
+          </select>
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- Heading -->
+    <div class="directory-heading">
+
+      <div>
+        <p class="section-label">
+          All Resources
+        </p>
+
+        <h2>
+          Browse the directory
+        </h2>
+      </div>
+
+      <p class="results-count">
+        Showing 8 sample resources
+      </p>
+
+    </div>
+
+    <!-- Cards -->
+    <div class="resource-grid">
+
+      <!-- 1 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              North Dallas Counseling Center
+            </h3>
+
+            <p class="address">
+              Richardson, TX 75080
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Anxiety</span>
+          <span class="tag">Depression</span>
+          <span class="tag">Trauma</span>
+          <span class="tag gold">Aetna</span>
+        </div>
+
+        <p class="description">
+          Individual and family counseling with both in-person and
+          virtual appointments available.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person & Virtual</span>
+          <span>Mon–Fri: 8 AM–6 PM</span>
+          <span>(972) 555-0142</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 2 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Hope Community Wellness
+            </h3>
+
+            <p class="address">
+              Richardson, TX 75081
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Family Therapy</span>
+          <span class="tag">Stress</span>
+          <span class="tag">Grief</span>
+          <span class="tag gold">Aetna</span>
+        </div>
+
+        <p class="description">
+          Community-focused counseling services for individuals,
+          couples, and families.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person</span>
+          <span>Mon–Sat: 9 AM–5 PM</span>
+          <span>(972) 555-0187</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 3 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Serenity Behavioral Health
+            </h3>
+
+            <p class="address">
+              Dallas, TX 75243
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Anxiety</span>
+          <span class="tag">PTSD</span>
+          <span class="tag">Young Adults</span>
+          <span class="tag gold">Blue Cross Blue Shield</span>
+        </div>
+
+        <p class="description">
+          Behavioral health support with flexible appointment options
+          and trauma-focused care.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person & Virtual</span>
+          <span>Mon–Fri: 8 AM–7 PM</span>
+          <span>(214) 555-0129</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 4 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              New Leaf Therapy Collective
+            </h3>
+
+            <p class="address">
+              Plano, TX 75075
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Depression</span>
+          <span class="tag">Relationships</span>
+          <span class="tag">LGBTQ+ Support</span>
+          <span class="tag gold">Cigna</span>
+        </div>
+
+        <p class="description">
+          Inclusive individual and relationship counseling with
+          virtual appointments available.
+        </p>
+
+        <div class="resource-info">
+          <span>● Virtual</span>
+          <span>Mon–Fri: 10 AM–8 PM</span>
+          <span>(469) 555-0163</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 5 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Oak & Sage Counseling
+            </h3>
+
+            <p class="address">
+              Addison, TX 75001
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Trauma</span>
+          <span class="tag">Grief</span>
+          <span class="tag">Couples</span>
+          <span class="tag gold">UnitedHealthcare</span>
+        </div>
+
+        <p class="description">
+          Counseling for adults and couples with an emphasis
+          on trauma, grief, and relationships.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person & Virtual</span>
+          <span>Tue–Sat: 9 AM–6 PM</span>
+          <span>(972) 555-0198</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 6 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Harbor Wellness Center
+            </h3>
+
+            <p class="address">
+              Dallas, TX 75240
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Stress</span>
+          <span class="tag">Depression</span>
+          <span class="tag">Adults</span>
+          <span class="tag gold">Medicaid</span>
+        </div>
+
+        <p class="description">
+          Accessible counseling and wellness services for adults
+          seeking short- and long-term support.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person</span>
+          <span>Mon–Fri: 9 AM–5 PM</span>
+          <span>(214) 555-0175</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 7 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Willow Family Counseling
+            </h3>
+
+            <p class="address">
+              Garland, TX 75044
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Children</span>
+          <span class="tag">Family Therapy</span>
+          <span class="tag">Anxiety</span>
+          <span class="tag gold">Other</span>
+        </div>
+
+        <p class="description">
+          Family-centered support for children, teens, parents,
+          and caregivers.
+        </p>
+
+        <div class="resource-info">
+          <span>● In-person & Virtual</span>
+          <span>Mon–Sat: 8 AM–6 PM</span>
+          <span>(972) 555-0114</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+      <!-- 8 -->
+      <div class="resource-card">
+
+        <div class="resource-top">
+          <div>
+            <h3 class="resource-name">
+              Compass Mental Wellness
+            </h3>
+
+            <p class="address">
+              Plano, TX 75093
+            </p>
+          </div>
+
+          <span class="verified">
+            ✓ Verified
+          </span>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Anxiety</span>
+          <span class="tag">Career Stress</span>
+          <span class="tag">Young Adults</span>
+          <span class="tag gold">Aetna</span>
+        </div>
+
+        <p class="description">
+          Therapy and mental wellness services for young adults
+          navigating stress, anxiety, and life changes.
+        </p>
+
+        <div class="resource-info">
+          <span>● Virtual</span>
+          <span>Mon–Fri: 9 AM–8 PM</span>
+          <span>(469) 555-0136</span>
+        </div>
+
+        <div class="card-buttons">
+          <a href="#" class="details-button">View Details</a>
+          <a href="map.html" class="map-button">View on Map</a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-content">
+
+      <div class="footer-logo">
+        A Mindful Resource
+      </div>
+
+      <div>
+        Connecting communities with support.
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>
