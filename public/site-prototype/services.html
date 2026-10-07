@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Services | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+      --gold: #c89545;
+      --gold-hover: #b98538;
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+      --white: #fcfaf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .donate-link {
+      color: #dfb56e;
+      font-weight: bold;
+    }
+
+    .donate-link:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+
+    .page-hero {
+      background: var(--forest);
+      padding: 90px 28px;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: #b27f35;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .page-hero .eyebrow {
+      color: #dfb56e;
+    }
+
+    .page-hero h1 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 54px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 20px auto 0;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* INTRO */
+
+    .intro {
+      max-width: 1000px;
+      margin: auto;
+      padding: 80px 28px 45px;
+      text-align: center;
+    }
+
+    .intro h2 {
+      max-width: 700px;
+      margin: 10px auto 0;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 40px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .intro p:last-child {
+      max-width: 700px;
+      margin: 16px auto 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    /* SERVICES */
+
+    .services {
+      max-width: 1080px;
+      margin: auto;
+      padding: 10px 28px 90px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+    .service-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 32px;
+      min-height: 250px;
+    }
+
+    .service-number {
+      color: #a47734;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .service-card h3 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 27px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .service-card p {
+      margin-top: 12px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .service-card a {
+      display: inline-block;
+      margin-top: 20px;
+      color: #8d682f;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* HOW IT CONNECTS */
+
+    .connection {
+      background: var(--sage-light);
+      padding: 80px 28px;
+    }
+
+    .connection-inner {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .connection-heading {
+      max-width: 650px;
+    }
+
+    .connection-heading h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 39px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .steps {
+      margin-top: 38px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .step {
+      border-top: 2px solid #b6c3bb;
+      padding-top: 22px;
+    }
+
+    .step span {
+      color: #9a7135;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .step h3 {
+      margin-top: 9px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .step p {
+      margin-top: 9px;
+      color: #5c6d64;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    /* CTA */
+
+    .cta {
+      background: var(--forest);
+      padding: 75px 28px;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .cta h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 39px;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .cta p {
+      margin-top: 14px;
+      color: #d7e0da;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .cta-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      padding: 12px 19px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .primary-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+    }
+
+    .secondary-button {
+      border: 1px solid #9baca3;
+      color: var(--white);
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--forest-deep);
+      padding: 45px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer-description {
+      max-width: 350px;
+      margin-top: 12px;
+      color: #aebdb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-top: 9px;
+      color: #aebdb5;
+      font-size: 13px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #36584c;
+      color: #91a49a;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 43px;
+      }
+
+      .service-grid,
+      .steps,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">A Mindful Resource</a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html" class="active">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="resources.html">Resources</a>
+        <a href="map.html">Map</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html" class="donate-link">Donate</a>
+        <a href="resources.html" class="nav-button">Find Support</a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="page-hero">
+
+    <div class="hero-inner">
+
+      <p class="eyebrow">Programs & Services</p>
+
+      <h1>
+        Support that meets people where they are.
+      </h1>
+
+      <p class="hero-description">
+        Explore the different ways A Mindful Resource connects
+        individuals and communities with mental wellness support,
+        information, and opportunities for connection.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <p class="section-label">What We Offer</p>
+
+    <h2>
+      Different paths. One goal: making support easier to reach.
+    </h2>
+
+    <p>
+      Whether someone is looking for a local resource, checking in
+      on their wellness, or connecting with their community,
+      A Mindful Resource provides a place to start.
+    </p>
+
+  </section>
+
+
+  <!-- SERVICE CARDS -->
+
+  <section class="services">
+
+    <div class="service-grid">
+
+      <div class="service-card">
+
+        <span class="service-number">01</span>
+
+        <h3>Resource Navigation</h3>
+
+        <p>
+          Explore mental health and wellness resources through a
+          searchable directory designed to help people find support
+          based on their needs and location.
+        </p>
+
+        <a href="resources.html">
+          Find Resources →
+        </a>
+
+      </div>
+
+
+      <div class="service-card">
+
+        <span class="service-number">02</span>
+
+        <h3>Wellness Check-In</h3>
+
+        <p>
+          Use a guided wellness experience to reflect on how you're
+          feeling and discover resources that may be relevant to
+          where you are right now.
+        </p>
+
+        <a href="wellness.html">
+          Start a Check-In →
+        </a>
+
+      </div>
+
+
+      <div class="service-card">
+
+        <span class="service-number">03</span>
+
+        <h3>Community Programs</h3>
+
+        <p>
+          Discover programs and community-centered initiatives
+          focused on mental wellness, education, connection,
+          and early support.
+        </p>
+
+        <a href="events.html">
+          Explore Community →
+        </a>
+
+      </div>
+
+
+      <div class="service-card">
+
+        <span class="service-number">04</span>
+
+        <h3>Resource Partnerships</h3>
+
+        <p>
+          Give organizations and service providers a pathway to
+          share resources with the community and contribute to a
+          trusted network of support.
+        </p>
+
+        <a href="submit-resource.html">
+          Submit a Resource →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- HOW IT CONNECTS -->
+
+  <section class="connection">
+
+    <div class="connection-inner">
+
+      <div class="connection-heading">
+
+        <p class="section-label">How It Works</p>
+
+        <h2>
+          From uncertainty to a clearer next step.
+        </h2>
+
+      </div>
+
+      <div class="steps">
+
+        <div class="step">
+          <span>STEP 01</span>
+          <h3>Start where you are.</h3>
+
+          <p>
+            Explore the site, complete a wellness check-in, or
+            begin searching for support directly.
+          </p>
+        </div>
+
+
+        <div class="step">
+          <span>STEP 02</span>
+          <h3>Explore your options.</h3>
+
+          <p>
+            Browse resources, programs, and community opportunities
+            that fit what you're looking for.
+          </p>
+        </div>
+
+
+        <div class="step">
+          <span>STEP 03</span>
+          <h3>Take the next step.</h3>
+
+          <p>
+            Connect with a resource or continue exploring the
+            information and support available to you.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-inner">
+
+      <h2>
+        Looking for support?
+      </h2>
+
+      <p>
+        Explore trusted resources near you or start with a
+        guided wellness check-in.
+      </p>
+
+      <div class="cta-buttons">
+
+        <a href="resources.html" class="primary-button">
+          Find Support
+        </a>
+
+        <a href="wellness.html" class="secondary-button">
+          Wellness Check-In
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          A Mindful Resource
+        </div>
+
+        <p class="footer-description">
+          Connecting communities with mental wellness resources,
+          support, and opportunities for connection.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Explore</h4>
+
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html">Donate</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Resources</h4>
+
+        <a href="resources.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Resource Map</a>
+        <a href="submit-resource.html">Submit a Resource</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 A Mindful Resource
+    </div>
+
+  </footer>
+
+</body>
+</html>

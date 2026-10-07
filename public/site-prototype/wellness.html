@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Wellness Check-In | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+      --gold: #c89545;
+      --gold-hover: #b98538;
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+      --white: #fcfaf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* NAVIGATION */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .donate-link {
+      color: #dfb56e;
+      font-weight: bold;
+    }
+
+    .donate-link:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* HERO */
+
+    .page-hero {
+      background: var(--forest);
+      padding: 80px 28px 100px;
+    }
+
+    .hero-inner {
+      max-width: 820px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: #dfb56e;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 54px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 20px auto 0;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ASSESSMENT */
+
+    .assessment-section {
+      max-width: 850px;
+      margin: -45px auto 0;
+      padding: 0 28px 90px;
+      position: relative;
+    }
+
+    .assessment-card {
+      background: var(--cream-light);
+      border: 1px solid #d7ddd8;
+      border-radius: 14px;
+      padding: 42px;
+      box-shadow: 0 12px 35px rgba(25, 58, 48, 0.09);
+    }
+
+    .progress-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .progress-bar {
+      height: 7px;
+      background: #dce3de;
+      border-radius: 20px;
+      margin-top: 12px;
+      overflow: hidden;
+    }
+
+    .progress-fill {
+      width: 20%;
+      height: 100%;
+      background: var(--gold);
+      border-radius: 20px;
+    }
+
+    .question {
+      margin-top: 38px;
+    }
+
+    .question-label {
+      color: #9a7135;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+    }
+
+    .question h2 {
+      max-width: 650px;
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 34px;
+      line-height: 1.25;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .question-description {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .answers {
+      margin-top: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+    }
+
+    .answer {
+      width: 100%;
+      padding: 16px 18px;
+      background: var(--cream);
+      border: 1px solid #d2d9d4;
+      border-radius: 8px;
+      text-align: left;
+      color: var(--text-dark);
+      font-size: 14px;
+      cursor: pointer;
+      transition: 0.15s ease;
+    }
+
+    .answer:hover {
+      background: var(--sage-light);
+      border-color: var(--sage);
+    }
+
+    .answer.selected {
+      background: var(--sage-light);
+      border-color: var(--forest);
+      color: var(--forest-deep);
+      font-weight: bold;
+    }
+
+    .assessment-actions {
+      margin-top: 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .back-button {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      font-size: 13px;
+      cursor: pointer;
+    }
+
+    .next-button {
+      border: none;
+      border-radius: 6px;
+      padding: 12px 20px;
+      background: var(--forest);
+      color: var(--white);
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .next-button:hover {
+      background: var(--forest-deep);
+    }
+
+    /* EXPLANATION */
+
+    .why-section {
+      background: var(--sage-light);
+      padding: 75px 28px;
+    }
+
+    .why-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+    }
+
+    .section-label {
+      color: #9a7135;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .why-inner h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      line-height: 1.2;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .why-copy {
+      color: #56695f;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .why-copy p + p {
+      margin-top: 16px;
+    }
+
+    /* NEXT STEPS */
+
+    .next-steps {
+      padding: 80px 28px;
+    }
+
+    .next-inner {
+      max-width: 1000px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .next-inner h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .next-inner > p:last-of-type {
+      max-width: 650px;
+      margin: 14px auto 0;
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .next-grid {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      text-align: left;
+    }
+
+    .next-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 10px;
+      padding: 25px;
+    }
+
+    .next-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 21px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .next-card p {
+      margin-top: 9px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .next-card a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #8d682f;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    /* FOOTER */
+
+    footer {
+      background: var(--forest-deep);
+      padding: 45px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer-description {
+      max-width: 350px;
+      margin-top: 12px;
+      color: #aebdb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-top: 9px;
+      color: #aebdb5;
+      font-size: 13px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #36584c;
+      color: #91a49a;
+      font-size: 12px;
+    }
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 43px;
+      }
+
+      .why-inner,
+      .next-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .why-inner {
+        gap: 30px;
+      }
+
+      .assessment-card {
+        padding: 28px 22px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html" class="active">Wellness</a>
+        <a href="resources.html">Resources</a>
+        <a href="map.html">Map</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html" class="donate-link">Donate</a>
+
+        <a href="resources.html" class="nav-button">
+          Find Support
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="page-hero">
+
+    <div class="hero-inner">
+
+      <p class="eyebrow">
+        Wellness Check-In
+      </p>
+
+      <h1>
+        Start with how you're feeling.
+      </h1>
+
+      <p class="hero-description">
+        Take a moment to reflect on how you've been doing.
+        Your responses can help guide you toward resources and
+        support that may be useful to you.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- MOCK ASSESSMENT -->
+
+  <section class="assessment-section">
+
+    <div class="assessment-card">
+
+      <div class="progress-top">
+        <span>Question 1 of 5</span>
+        <span>20% complete</span>
+      </div>
+
+      <div class="progress-bar">
+        <div class="progress-fill"></div>
+      </div>
+
+      <div class="question">
+
+        <p class="question-label">
+          Check in with yourself
+        </p>
+
+        <h2>
+          How have you been feeling lately?
+        </h2>
+
+        <p class="question-description">
+          Choose the response that feels closest to your experience.
+        </p>
+
+        <div class="answers">
+
+          <button class="answer">
+            I've been feeling stressed or overwhelmed
+          </button>
+
+          <button class="answer">
+            I've been feeling down or disconnected
+          </button>
+
+          <button class="answer">
+            I've been feeling anxious or worried
+          </button>
+
+          <button class="answer">
+            I'm doing okay, but I would like some support
+          </button>
+
+          <button class="answer">
+            I'm not sure how I'm feeling
+          </button>
+
+        </div>
+
+      </div>
+
+      <div class="assessment-actions">
+
+        <button class="back-button">
+          ← Back
+        </button>
+
+        <button class="next-button">
+          Continue →
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WHY -->
+
+  <section class="why-section">
+
+    <div class="why-inner">
+
+      <div>
+
+        <p class="section-label">
+          Why Check In?
+        </p>
+
+        <h2>
+          You don't need to have everything figured out.
+        </h2>
+
+      </div>
+
+
+      <div class="why-copy">
+
+        <p>
+          Sometimes the hardest part of looking for support is knowing
+          where to begin. A wellness check-in can provide a simple
+          starting point for thinking about what you may need.
+        </p>
+
+        <p>
+          This tool is intended to help guide you toward relevant
+          resources and information. It is not a diagnosis or a
+          replacement for professional mental health care.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- OTHER PATHS -->
+
+  <section class="next-steps">
+
+    <div class="next-inner">
+
+      <p class="section-label">
+        Other Ways to Start
+      </p>
+
+      <h2>
+        Already know what you're looking for?
+      </h2>
+
+      <p>
+        You can skip the wellness check-in and explore available
+        resources directly.
+      </p>
+
+      <div class="next-grid">
+
+        <div class="next-card">
+
+          <h3>Browse Resources</h3>
+
+          <p>
+            Explore mental wellness resources and support options.
+          </p>
+
+          <a href="resources.html">
+            Find Support →
+          </a>
+
+        </div>
+
+
+        <div class="next-card">
+
+          <h3>Search the Directory</h3>
+
+          <p>
+            Browse available services and filter by what matters to you.
+          </p>
+
+          <a href="directory.html">
+            Open Directory →
+          </a>
+
+        </div>
+
+
+        <div class="next-card">
+
+          <h3>Explore the Map</h3>
+
+          <p>
+            See available resources based on location.
+          </p>
+
+          <a href="map.html">
+            View Map →
+          </a>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          A Mindful Resource
+        </div>
+
+        <p class="footer-description">
+          Connecting communities with mental wellness resources,
+          support, and opportunities for connection.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Explore</h4>
+
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html">Donate</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Resources</h4>
+
+        <a href="resources.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Resource Map</a>
+        <a href="submit-resource.html">Submit a Resource</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 A Mindful Resource
+    </div>
+
+  </footer>
+
+
+  <script>
+    const answers = document.querySelectorAll(".answer");
+
+    answers.forEach((answer) => {
+      answer.addEventListener("click", () => {
+        answers.forEach((item) => {
+          item.classList.remove("selected");
+        });
+
+        answer.classList.add("selected");
+      });
+    });
+  </script>
+
+</body>
+</html>

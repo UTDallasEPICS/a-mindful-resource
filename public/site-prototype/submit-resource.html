@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submit a Resource | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+      --gold: #c89545;
+      --gold-hover: #b98538;
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+      --white: #fcfaf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+    }
+
+    .donate-link {
+      color: #dfb56e;
+      font-weight: bold;
+    }
+
+    .donate-link:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .page-hero {
+      background: var(--forest);
+      padding: 75px 28px 95px;
+    }
+
+    .hero-inner {
+      max-width: 850px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: #dfb56e;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.7px;
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 52px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 670px;
+      margin: 20px auto 0;
+      color: #d7e0da;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    /* ---------- PROCESS ---------- */
+
+    .process-section {
+      max-width: 1000px;
+      margin: -40px auto 0;
+      padding: 0 28px 65px;
+      position: relative;
+    }
+
+    .process-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(25, 58, 48, 0.08);
+    }
+
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .process-step {
+      position: relative;
+    }
+
+    .step-number {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--forest);
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .process-step h3 {
+      margin-top: 12px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 20px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .process-step p {
+      margin-top: 7px;
+      color: var(--text-muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    /* ---------- FORM ---------- */
+
+    .form-section {
+      max-width: 850px;
+      margin: auto;
+      padding: 10px 28px 90px;
+    }
+
+    .form-heading {
+      margin-bottom: 28px;
+    }
+
+    .form-heading .section-label {
+      color: #9a7135;
+    }
+
+    .form-heading h2 {
+      margin-top: 9px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .form-heading p {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .resource-form {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      padding: 34px;
+    }
+
+    .form-group-title {
+      margin-bottom: 20px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #dde1de;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .form-group-title:not(:first-child) {
+      margin-top: 35px;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 16px;
+      margin-bottom: 17px;
+    }
+
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .field.full {
+      margin-bottom: 17px;
+    }
+
+    label {
+      color: var(--forest-deep);
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    .optional {
+      color: var(--text-muted);
+      font-weight: normal;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 13px;
+      border: 1px solid #cbd3ce;
+      border-radius: 6px;
+      background: var(--cream);
+      color: var(--text-dark);
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 13px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--forest);
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .checkbox-section {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .checkbox-option {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 12px;
+      background: var(--cream);
+      border: 1px solid #d4dad6;
+      border-radius: 6px;
+    }
+
+    .checkbox-option input {
+      width: auto;
+    }
+
+    .checkbox-option label {
+      font-weight: normal;
+      font-size: 12px;
+      cursor: pointer;
+    }
+
+    .agreement {
+      margin-top: 30px;
+      padding: 18px;
+      background: var(--sage-light);
+      border-radius: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .agreement input {
+      width: auto;
+      margin-top: 2px;
+    }
+
+    .agreement label {
+      color: #4d6258;
+      font-size: 12px;
+      line-height: 1.6;
+      font-weight: normal;
+    }
+
+    .form-actions {
+      margin-top: 25px;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .submit-button {
+      border: none;
+      border-radius: 6px;
+      padding: 13px 22px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-size: 13px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    .submit-button:hover {
+      background: var(--gold-hover);
+    }
+
+    /* ---------- MOCK MESSAGE ---------- */
+
+    .prototype-message {
+      display: none;
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 8px;
+      background: var(--sage-light);
+      color: var(--forest-deep);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* ---------- REVIEW INFO ---------- */
+
+    .review-section {
+      background: var(--sage-light);
+      padding: 75px 28px;
+    }
+
+    .review-inner {
+      max-width: 950px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .review-section .section-label {
+      color: #9a7135;
+    }
+
+    .review-inner h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 36px;
+      line-height: 1.2;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .review-copy {
+      color: #56695f;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .review-copy p + p {
+      margin-top: 14px;
+    }
+
+    /* ---------- CTA ---------- */
+
+    .cta {
+      background: var(--forest);
+      padding: 65px 28px;
+    }
+
+    .cta-inner {
+      max-width: 950px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .cta h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .cta p {
+      margin-top: 8px;
+      max-width: 580px;
+      color: #d7e0da;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .cta-button {
+      padding: 11px 17px;
+      border-radius: 6px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      padding: 45px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer-description {
+      max-width: 350px;
+      margin-top: 12px;
+      color: #aebdb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-top: 9px;
+      color: #aebdb5;
+      font-size: 13px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #36584c;
+      color: #91a49a;
+      font-size: 12px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 42px;
+      }
+
+      .process-grid,
+      .form-row,
+      .checkbox-section,
+      .review-inner,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .review-inner {
+        gap: 30px;
+      }
+
+      .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .resource-form {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="resources.html">Resources</a>
+        <a href="map.html">Map</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html" class="donate-link">Donate</a>
+
+        <a href="resources.html" class="nav-button">
+          Find Support
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="page-hero">
+
+    <div class="hero-inner">
+
+      <p class="eyebrow">
+        Join the Resource Network
+      </p>
+
+      <h1>
+        Submit a resource.
+      </h1>
+
+      <p class="hero-description">
+        Help make mental health and wellness support easier to find.
+        Providers and community organizations can submit their
+        services for review and possible inclusion in the directory.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- PROCESS -->
+
+  <section class="process-section">
+
+    <div class="process-card">
+
+      <div class="process-grid">
+
+        <div class="process-step">
+
+          <div class="step-number">1</div>
+
+          <h3>Submit</h3>
+
+          <p>
+            Share information about your organization,
+            services, and contact details.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="step-number">2</div>
+
+          <h3>Review</h3>
+
+          <p>
+            The submission is reviewed before it becomes
+            part of the public resource directory.
+          </p>
+
+        </div>
+
+
+        <div class="process-step">
+
+          <div class="step-number">3</div>
+
+          <h3>Publish</h3>
+
+          <p>
+            Approved resources can be added to the directory
+            and resource map.
+          </p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FORM -->
+
+  <section class="form-section">
+
+    <div class="form-heading">
+
+      <p class="section-label">
+        Resource Submission
+      </p>
+
+      <h2>
+        Tell us about your resource.
+      </h2>
+
+      <p>
+        Complete the information below so the resource can be
+        reviewed before being added to the directory.
+      </p>
+
+    </div>
+
+
+    <form class="resource-form" id="resourceForm">
+
+      <!-- ORGANIZATION -->
+
+      <h3 class="form-group-title">
+        Organization Information
+      </h3>
+
+
+      <div class="form-row">
+
+        <div class="field">
+          <label for="organization">
+            Organization Name *
+          </label>
+
+          <input
+            id="organization"
+            type="text"
+            placeholder="Organization name"
+            required
+          />
+        </div>
+
+
+        <div class="field">
+          <label for="service">
+            Service / Program Name *
+          </label>
+
+          <input
+            id="service"
+            type="text"
+            placeholder="Service or program name"
+            required
+          />
+        </div>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="field">
+          <label for="website">
+            Website
+          </label>
+
+          <input
+            id="website"
+            type="url"
+            placeholder="https://"
+          />
+        </div>
+
+
+        <div class="field">
+          <label for="phone">
+            Phone Number *
+          </label>
+
+          <input
+            id="phone"
+            type="tel"
+            placeholder="(000) 000-0000"
+            required
+          />
+        </div>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="field">
+          <label for="email">
+            Contact Email *
+          </label>
+
+          <input
+            id="email"
+            type="email"
+            placeholder="name@example.org"
+            required
+          />
+        </div>
+
+
+        <div class="field">
+          <label for="contact">
+            Contact Person
+            <span class="optional">(optional)</span>
+          </label>
+
+          <input
+            id="contact"
+            type="text"
+            placeholder="Contact name"
+          />
+        </div>
+
+      </div>
+
+
+      <!-- LOCATION -->
+
+      <h3 class="form-group-title">
+        Location
+      </h3>
+
+
+      <div class="field full">
+
+        <label for="address">
+          Street Address
+        </label>
+
+        <input
+          id="address"
+          type="text"
+          placeholder="Street address"
+        />
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="field">
+
+          <label for="city">
+            City *
+          </label>
+
+          <input
+            id="city"
+            type="text"
+            placeholder="City"
+            required
+          />
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="zip">
+            ZIP Code *
+          </label>
+
+          <input
+            id="zip"
+            type="text"
+            placeholder="ZIP code"
+            required
+          />
+
+        </div>
+
+      </div>
+
+
+      <!-- SERVICE DETAILS -->
+
+      <h3 class="form-group-title">
+        Service Details
+      </h3>
+
+
+      <div class="form-row">
+
+        <div class="field">
+
+          <label for="specialty">
+            Primary Specialty *
+          </label>
+
+          <select id="specialty" required>
+
+            <option value="">
+              Select specialty
+            </option>
+
+            <option>Anxiety & Stress</option>
+            <option>Depression</option>
+            <option>Trauma</option>
+            <option>Family Support</option>
+            <option>Youth Support</option>
+            <option>Grief & Loss</option>
+            <option>Relationships</option>
+            <option>Community Support</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="insurance">
+            Insurance
+          </label>
+
+          <select id="insurance">
+
+            <option value="">
+              Select insurance
+            </option>
+
+            <option>Aetna</option>
+            <option>Blue Cross Blue Shield</option>
+            <option>Cigna</option>
+            <option>Medicaid</option>
+            <option>UnitedHealthcare</option>
+            <option>Self-Pay</option>
+            <option>Other</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label>
+          How are services offered? *
+        </label>
+
+        <div class="checkbox-section">
+
+          <div class="checkbox-option">
+
+            <input
+              type="checkbox"
+              id="inPerson"
+            />
+
+            <label for="inPerson">
+              In-person
+            </label>
+
+          </div>
+
+
+          <div class="checkbox-option">
+
+            <input
+              type="checkbox"
+              id="virtual"
+            />
+
+            <label for="virtual">
+              Virtual
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="form-row">
+
+        <div class="field">
+
+          <label for="hours">
+            Hours
+          </label>
+
+          <input
+            id="hours"
+            type="text"
+            placeholder="Example: Mon–Fri, 9 AM–5 PM"
+          />
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="cost">
+            Cost / Payment Information
+            <span class="optional">(optional)</span>
+          </label>
+
+          <input
+            id="cost"
+            type="text"
+            placeholder="Example: Sliding scale available"
+          />
+
+        </div>
+
+      </div>
+
+
+      <div class="field full">
+
+        <label for="description">
+          Resource Description *
+        </label>
+
+        <textarea
+          id="description"
+          placeholder="Briefly describe the services, population served, and other helpful information."
+          required
+        ></textarea>
+
+      </div>
+
+
+      <!-- AGREEMENT -->
+
+      <div class="agreement">
+
+        <input
+          type="checkbox"
+          id="agreement"
+          required
+        />
+
+        <label for="agreement">
+          I confirm that the information provided is accurate to the
+          best of my knowledge and understand that submitting this form
+          does not guarantee publication in the resource directory.
+        </label>
+
+      </div>
+
+
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="submit-button"
+        >
+          Submit Resource
+        </button>
+
+      </div>
+
+
+      <div
+        class="prototype-message"
+        id="prototypeMessage"
+      >
+        <strong>Prototype submission complete.</strong><br>
+        In the final system, this information would be sent to an
+        administrator for review before the resource could appear
+        in the public directory.
+      </div>
+
+    </form>
+
+  </section>
+
+
+  <!-- REVIEW PROCESS -->
+
+  <section class="review-section">
+
+    <div class="review-inner">
+
+      <div>
+
+        <p class="section-label">
+          Verification
+        </p>
+
+        <h2>
+          Resources are reviewed before publication.
+        </h2>
+
+      </div>
+
+
+      <div class="review-copy">
+
+        <p>
+          Submitted information does not immediately appear in the
+          public directory. A Mindful Resource can review each
+          submission before deciding whether it should be published.
+        </p>
+
+        <p>
+          This review process helps keep directory information
+          organized and gives administrators the ability to request
+          changes or decline a submission when necessary.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-inner">
+
+      <div>
+
+        <h2>
+          Looking for a resource instead?
+        </h2>
+
+        <p>
+          Search the Resource Hub to explore services based on
+          location, specialty, insurance, and care type.
+        </p>
+
+      </div>
+
+      <a href="resources.html" class="cta-button">
+        Find Support
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          A Mindful Resource
+        </div>
+
+        <p class="footer-description">
+          Connecting communities with mental wellness resources,
+          support, and opportunities for connection.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Explore</h4>
+
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html">Donate</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Resources</h4>
+
+        <a href="resources.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Resource Map</a>
+        <a href="submit-resource.html">Submit a Resource</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 A Mindful Resource
+    </div>
+
+  </footer>
+
+
+  <!-- PROTOTYPE FORM BEHAVIOR -->
+
+  <script>
+    const resourceForm = document.getElementById("resourceForm");
+    const prototypeMessage = document.getElementById("prototypeMessage");
+
+    resourceForm.addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      prototypeMessage.style.display = "block";
+      prototypeMessage.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+      });
+    });
+  </script>
+
+</body>
+</html>

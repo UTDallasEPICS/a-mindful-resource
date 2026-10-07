@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Events & Community | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+      --gold: #c89545;
+      --gold-hover: #b98538;
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+      --white: #fcfaf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .donate-link {
+      color: #dfb56e;
+      font-weight: bold;
+    }
+
+    .donate-link:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    /* ---------- HERO ---------- */
+
+    .page-hero {
+      background: var(--forest);
+      padding: 85px 28px;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow,
+    .section-label {
+      color: #dfb56e;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 54px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 670px;
+      margin: 20px auto 0;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ---------- INTRO ---------- */
+
+    .intro {
+      max-width: 1000px;
+      margin: auto;
+      padding: 75px 28px 45px;
+      text-align: center;
+    }
+
+    .intro .section-label {
+      color: #9a7135;
+    }
+
+    .intro h2 {
+      margin: 10px auto 0;
+      max-width: 700px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 39px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .intro p:last-child {
+      max-width: 680px;
+      margin: 15px auto 0;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ---------- EVENTS ---------- */
+
+    .events-section {
+      max-width: 1080px;
+      margin: auto;
+      padding: 0 28px 90px;
+    }
+
+    .events-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 25px;
+      margin-bottom: 25px;
+    }
+
+    .events-header h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 32px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .sample-note {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .event-card {
+      background: var(--cream-light);
+      border: 1px solid #d8ddd8;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .event-image {
+      height: 160px;
+      background: var(--sage-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .event-shape-one {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: rgba(33, 72, 59, 0.12);
+    }
+
+    .event-shape-two {
+      position: absolute;
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      background: rgba(200, 149, 69, 0.22);
+      margin-left: 80px;
+      margin-top: 40px;
+    }
+
+    .event-type {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      padding: 6px 9px;
+      border-radius: 20px;
+      background: var(--cream-light);
+      color: var(--forest);
+      font-size: 10px;
+      font-weight: bold;
+      text-transform: uppercase;
+      letter-spacing: 0.7px;
+    }
+
+    .event-content {
+      padding: 23px;
+    }
+
+    .event-date {
+      color: #9a7135;
+      font-size: 11px;
+      font-weight: bold;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+    }
+
+    .event-card h3 {
+      margin-top: 9px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      line-height: 1.25;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .event-card p {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .event-details {
+      margin-top: 15px;
+      padding-top: 14px;
+      border-top: 1px solid #e0e4e1;
+      color: #52675d;
+      font-size: 12px;
+      line-height: 1.8;
+    }
+
+    .event-link {
+      display: inline-block;
+      margin-top: 17px;
+      color: #8d682f;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* ---------- COMMUNITY ---------- */
+
+    .community {
+      background: var(--sage-light);
+      padding: 80px 28px;
+    }
+
+    .community-inner {
+      max-width: 1000px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 70px;
+      align-items: center;
+    }
+
+    .community .section-label {
+      color: #9a7135;
+    }
+
+    .community h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 39px;
+      line-height: 1.2;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .community-copy p {
+      color: #56695f;
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    .community-copy p + p {
+      margin-top: 15px;
+    }
+
+    /* ---------- WAYS TO CONNECT ---------- */
+
+    .connect {
+      max-width: 1050px;
+      margin: auto;
+      padding: 85px 28px;
+    }
+
+    .connect-header {
+      max-width: 650px;
+    }
+
+    .connect-header .section-label {
+      color: #9a7135;
+    }
+
+    .connect-header h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .connect-grid {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .connect-card {
+      border-top: 2px solid #b9c5bd;
+      padding: 22px 5px 5px;
+    }
+
+    .connect-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 22px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .connect-card p {
+      margin-top: 9px;
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.65;
+    }
+
+    .connect-card a {
+      display: inline-block;
+      margin-top: 14px;
+      color: #8d682f;
+      font-size: 12px;
+      font-weight: bold;
+    }
+
+    /* ---------- CTA ---------- */
+
+    .cta {
+      background: var(--forest);
+      padding: 70px 28px;
+    }
+
+    .cta-inner {
+      max-width: 950px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 50px;
+    }
+
+    .cta h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 35px;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin-top: 10px;
+      color: #d7e0da;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .cta-button {
+      padding: 12px 18px;
+      border-radius: 6px;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-size: 13px;
+      font-weight: bold;
+      white-space: nowrap;
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      padding: 45px 28px;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer-description {
+      max-width: 350px;
+      margin-top: 12px;
+      color: #aebdb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-top: 9px;
+      color: #aebdb5;
+      font-size: 13px;
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #36584c;
+      color: #91a49a;
+      font-size: 12px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 43px;
+      }
+
+      .events-grid,
+      .community-inner,
+      .connect-grid,
+      .footer-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .community-inner {
+        gap: 30px;
+      }
+
+      .events-header,
+      .cta-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="resources.html">Resources</a>
+        <a href="map.html">Map</a>
+        <a href="events.html" class="active">Events</a>
+        <a href="donate.html" class="donate-link">Donate</a>
+
+        <a href="resources.html" class="nav-button">
+          Find Support
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="page-hero">
+
+    <div class="hero-inner">
+
+      <p class="eyebrow">
+        Events & Community
+      </p>
+
+      <h1>
+        Wellness happens in community.
+      </h1>
+
+      <p class="hero-description">
+        Explore opportunities to learn, connect, and participate
+        in conversations centered around mental wellness and
+        community support.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- INTRO -->
+
+  <section class="intro">
+
+    <p class="section-label">
+      Connect With Community
+    </p>
+
+    <h2>
+      Spaces for conversation, learning, and connection.
+    </h2>
+
+    <p>
+      Community events can create approachable opportunities to
+      learn about mental wellness, connect with others, and discover
+      resources in a supportive environment.
+    </p>
+
+  </section>
+
+
+  <!-- EVENTS -->
+
+  <section class="events-section">
+
+    <div class="events-header">
+
+      <h2>
+        Upcoming Events
+      </h2>
+
+      <p class="sample-note">
+        Sample events shown for prototype purposes.
+      </p>
+
+    </div>
+
+
+    <div class="events-grid">
+
+      <!-- EVENT 1 -->
+
+      <article class="event-card">
+
+        <div class="event-image">
+
+          <span class="event-type">
+            Sample Event
+          </span>
+
+          <div class="event-shape-one"></div>
+          <div class="event-shape-two"></div>
+
+        </div>
+
+        <div class="event-content">
+
+          <p class="event-date">
+            October 10 · 6:00 PM
+          </p>
+
+          <h3>
+            Community Wellness Conversation
+          </h3>
+
+          <p>
+            An approachable community conversation focused on
+            mental wellness, connection, and finding support.
+          </p>
+
+          <div class="event-details">
+            Richardson, TX<br>
+            In-person
+          </div>
+
+          <a href="#" class="event-link">
+            Event Details →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- EVENT 2 -->
+
+      <article class="event-card">
+
+        <div class="event-image">
+
+          <span class="event-type">
+            Sample Event
+          </span>
+
+          <div class="event-shape-one"></div>
+          <div class="event-shape-two"></div>
+
+        </div>
+
+        <div class="event-content">
+
+          <p class="event-date">
+            October 22 · 7:00 PM
+          </p>
+
+          <h3>
+            Stress & Self-Care Workshop
+          </h3>
+
+          <p>
+            A guided session exploring practical ways to recognize
+            stress and create supportive wellness routines.
+          </p>
+
+          <div class="event-details">
+            Online<br>
+            Virtual
+          </div>
+
+          <a href="#" class="event-link">
+            Event Details →
+          </a>
+
+        </div>
+
+      </article>
+
+
+      <!-- EVENT 3 -->
+
+      <article class="event-card">
+
+        <div class="event-image">
+
+          <span class="event-type">
+            Sample Event
+          </span>
+
+          <div class="event-shape-one"></div>
+          <div class="event-shape-two"></div>
+
+        </div>
+
+        <div class="event-content">
+
+          <p class="event-date">
+            November 7 · 11:00 AM
+          </p>
+
+          <h3>
+            Community Resource Day
+          </h3>
+
+          <p>
+            Connect with local organizations and learn about
+            wellness resources and support available in the community.
+          </p>
+
+          <div class="event-details">
+            Dallas, TX<br>
+            In-person
+          </div>
+
+          <a href="#" class="event-link">
+            Event Details →
+          </a>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </section>
+
+
+  <!-- COMMUNITY -->
+
+  <section class="community">
+
+    <div class="community-inner">
+
+      <div>
+
+        <p class="section-label">
+          More Than Events
+        </p>
+
+        <h2>
+          Creating spaces where people can show up as they are.
+        </h2>
+
+      </div>
+
+
+      <div class="community-copy">
+
+        <p>
+          Mental wellness does not only happen in a clinical setting.
+          Community, education, conversation, and connection can all
+          play a role in helping people feel supported.
+        </p>
+
+        <p>
+          This space gives A Mindful Resource a place to highlight
+          upcoming opportunities for people to connect with programs,
+          resources, and one another.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- WAYS TO CONNECT -->
+
+  <section class="connect">
+
+    <div class="connect-header">
+
+      <p class="section-label">
+        Keep Exploring
+      </p>
+
+      <h2>
+        Find the next step that works for you.
+      </h2>
+
+    </div>
+
+
+    <div class="connect-grid">
+
+      <div class="connect-card">
+
+        <h3>
+          Explore Services
+        </h3>
+
+        <p>
+          Learn more about programs, support, and ways to connect
+          through A Mindful Resource.
+        </p>
+
+        <a href="services.html">
+          View Services →
+        </a>
+
+      </div>
+
+
+      <div class="connect-card">
+
+        <h3>
+          Find Support
+        </h3>
+
+        <p>
+          Search mental health and wellness resources based on your
+          needs and location.
+        </p>
+
+        <a href="resources.html">
+          Explore Resources →
+        </a>
+
+      </div>
+
+
+      <div class="connect-card">
+
+        <h3>
+          Check In
+        </h3>
+
+        <p>
+          Take a moment to reflect on how you're feeling and explore
+          possible next steps.
+        </p>
+
+        <a href="wellness.html">
+          Wellness Check-In →
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-inner">
+
+      <div>
+
+        <h2>
+          Looking for support today?
+        </h2>
+
+        <p>
+          Explore the Resource Hub to search services, browse the
+          directory, or find support near you.
+        </p>
+
+      </div>
+
+      <a href="resources.html" class="cta-button">
+        Find Support
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          A Mindful Resource
+        </div>
+
+        <p class="footer-description">
+          Connecting communities with mental wellness resources,
+          support, and opportunities for connection.
+        </p>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Explore</h4>
+
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html">Donate</a>
+
+      </div>
+
+
+      <div class="footer-column">
+
+        <h4>Resources</h4>
+
+        <a href="resources.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Resource Map</a>
+        <a href="submit-resource.html">Submit a Resource</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 A Mindful Resource
+    </div>
+
+  </footer>
+
+</body>
+</html>

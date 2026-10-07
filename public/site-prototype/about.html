@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --cream: #f2ede3;
+      --cream-light: #faf7f0;
+      --gold: #c89545;
+      --gold-hover: #b98538;
+      --sage: #8fa397;
+      --sage-light: #dce3de;
+      --text-dark: #203a31;
+      --text-muted: #66756d;
+      --white: #fcfaf5;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--cream);
+      color: var(--text-dark);
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    /* ---------- NAVIGATION ---------- */
+
+    header {
+      background: var(--forest-deep);
+    }
+
+    .navbar {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      color: var(--white);
+      font-size: 21px;
+      font-weight: 700;
+      letter-spacing: -0.4px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    nav a {
+      color: #e8ece8;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: var(--white);
+    }
+
+    nav .active {
+      color: #d7aa62;
+      font-weight: bold;
+    }
+
+    .donate-link {
+      color: #dfb56e;
+      font-weight: bold;
+    }
+
+    .donate-link:hover {
+      color: var(--white);
+    }
+
+    .nav-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+      padding: 10px 17px;
+      border-radius: 6px;
+      font-weight: bold;
+    }
+
+    .nav-button:hover {
+      background: var(--gold-hover);
+      color: var(--forest-deep);
+    }
+
+    /* ---------- PAGE HERO ---------- */
+
+    .page-hero {
+      background: var(--forest);
+      padding: 90px 28px;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: #dfb56e;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+    }
+
+    .page-hero h1 {
+      margin-top: 15px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 54px;
+      line-height: 1.1;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .hero-description {
+      max-width: 680px;
+      margin: 20px auto 0;
+      color: #d7e0da;
+      font-size: 17px;
+      line-height: 1.7;
+    }
+
+    /* ---------- MISSION ---------- */
+
+    .mission {
+      max-width: 1050px;
+      margin: auto;
+      padding: 85px 28px;
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .section-label {
+      color: #9a7135;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 1.6px;
+      text-transform: uppercase;
+    }
+
+    .mission h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 42px;
+      line-height: 1.2;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .mission-copy {
+      color: var(--text-muted);
+      font-size: 16px;
+      line-height: 1.8;
+    }
+
+    .mission-copy p + p {
+      margin-top: 18px;
+    }
+
+    /* ---------- APPROACH ---------- */
+
+    .approach {
+      background: var(--sage-light);
+      padding: 75px 28px;
+    }
+
+    .approach-inner {
+      max-width: 1050px;
+      margin: auto;
+    }
+
+    .approach-heading {
+      max-width: 650px;
+    }
+
+    .approach-heading h2 {
+      margin-top: 10px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .approach-grid {
+      margin-top: 35px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .approach-card {
+      background: rgba(250, 247, 240, 0.85);
+      border: 1px solid #cbd5ce;
+      border-radius: 10px;
+      padding: 27px;
+    }
+
+    .approach-card h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 23px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .approach-card p {
+      margin-top: 10px;
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ---------- FOUNDER ---------- */
+
+    .founder-section {
+      max-width: 1050px;
+      margin: auto;
+      padding: 90px 28px;
+    }
+
+    .founder {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .founder-image {
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: var(--sage-light);
+      border: 6px solid var(--cream-light);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 48px;
+      color: var(--forest);
+    }
+
+    .founder-copy h2 {
+      margin-top: 9px;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: normal;
+      color: var(--forest-deep);
+    }
+
+    .founder-role {
+      margin-top: 6px;
+      color: #9a7135;
+      font-size: 13px;
+      font-weight: bold;
+    }
+
+    .founder-description {
+      max-width: 700px;
+      margin-top: 16px;
+      color: var(--text-muted);
+      font-size: 15px;
+      line-height: 1.8;
+    }
+
+    /* ---------- CTA ---------- */
+
+    .cta {
+      background: var(--forest);
+      padding: 70px 28px;
+      text-align: center;
+    }
+
+    .cta-inner {
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .cta h2 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 38px;
+      font-weight: normal;
+      color: var(--cream-light);
+    }
+
+    .cta p {
+      margin-top: 14px;
+      color: #d7e0da;
+      line-height: 1.7;
+      font-size: 15px;
+    }
+
+    .cta-buttons {
+      margin-top: 25px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      display: inline-block;
+      padding: 12px 19px;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    .primary-button {
+      background: var(--gold);
+      color: var(--forest-deep);
+    }
+
+    .secondary-button {
+      border: 1px solid #9baca3;
+      color: var(--white);
+    }
+
+    /* ---------- FOOTER ---------- */
+
+    footer {
+      background: var(--forest-deep);
+      padding: 45px 28px;
+      color: #d7e0da;
+    }
+
+    .footer-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.4fr 1fr 1fr;
+      gap: 60px;
+    }
+
+    .footer-brand {
+      color: var(--white);
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .footer-description {
+      max-width: 350px;
+      margin-top: 12px;
+      color: #aebdb5;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .footer-column h4 {
+      color: var(--white);
+      font-size: 13px;
+      margin-bottom: 13px;
+    }
+
+    .footer-column a {
+      display: block;
+      margin-top: 9px;
+      color: #aebdb5;
+      font-size: 13px;
+    }
+
+    .footer-column a:hover {
+      color: var(--white);
+    }
+
+    .copyright {
+      max-width: 1100px;
+      margin: 35px auto 0;
+      padding-top: 20px;
+      border-top: 1px solid #36584c;
+      color: #91a49a;
+      font-size: 12px;
+    }
+
+    /* ---------- MOBILE ---------- */
+
+    @media (max-width: 850px) {
+      nav {
+        display: none;
+      }
+
+      .page-hero h1 {
+        font-size: 43px;
+      }
+
+      .mission,
+      .founder {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .approach-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .cta-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- NAVIGATION -->
+
+  <header>
+    <div class="navbar">
+
+      <a href="index.html" class="logo">
+        A Mindful Resource
+      </a>
+
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="about.html" class="active">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="resources.html">Resources</a>
+        <a href="map.html">Map</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html" class="donate-link">Donate</a>
+
+        <a href="resources.html" class="nav-button">
+          Find Support
+        </a>
+      </nav>
+
+    </div>
+  </header>
+
+
+  <!-- HERO -->
+
+  <section class="page-hero">
+
+    <div class="hero-inner">
+
+      <p class="eyebrow">
+        About A Mindful Resource
+      </p>
+
+      <h1>
+        Mental wellness rooted in trust and community.
+      </h1>
+
+      <p class="hero-description">
+        A Mindful Resource works to make mental wellness support
+        more accessible, connected, and responsive to the communities
+        it serves.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- MISSION -->
+
+  <section class="mission">
+
+    <div>
+
+      <p class="section-label">
+        Our Purpose
+      </p>
+
+      <h2>
+        Care before crisis.
+      </h2>
+
+    </div>
+
+    <div class="mission-copy">
+
+      <p>
+        Finding mental health support should not feel confusing or
+        out of reach. A Mindful Resource helps create clearer pathways
+        between people, communities, and the support available to them.
+      </p>
+
+      <p>
+        The organization focuses on reducing barriers to mental wellness
+        by building trust, strengthening community connections, and
+        helping people discover resources before they reach a crisis point.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- APPROACH -->
+
+  <section class="approach">
+
+    <div class="approach-inner">
+
+      <div class="approach-heading">
+
+        <p class="section-label">
+          Our Approach
+        </p>
+
+        <h2>
+          Support starts with understanding.
+        </h2>
+
+      </div>
+
+      <div class="approach-grid">
+
+        <div class="approach-card">
+          <h3>Trust</h3>
+          <p>
+            Create welcoming pathways to support where people feel
+            respected, understood, and comfortable asking for help.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <h3>Access</h3>
+          <p>
+            Make mental wellness information and resources easier
+            to discover, understand, and use.
+          </p>
+        </div>
+
+        <div class="approach-card">
+          <h3>Community</h3>
+          <p>
+            Strengthen connections between individuals, local resources,
+            organizations, and the communities they serve.
+          </p>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOUNDER -->
+
+  <section class="founder-section">
+
+    <div class="founder">
+
+      <div class="founder-image">
+        DJ
+      </div>
+
+      <div class="founder-copy">
+
+        <p class="section-label">
+          Meet the Founder
+        </p>
+
+        <h2>
+          Dominique Johnson
+        </h2>
+
+        <p class="founder-role">
+          Founder & CEO
+        </p>
+
+        <p class="founder-description">
+          Dominique Johnson founded A Mindful Resource with a vision
+          of creating stronger and more accessible pathways to mental
+          wellness support.
+        </p>
+
+        <p class="founder-description">
+          That vision continues to guide the organization's focus on
+          trust, community connection, and helping people find support
+          that fits where they are.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <div class="cta-inner">
+
+      <h2>
+        Start where you are.
+      </h2>
+
+      <p>
+        Explore mental wellness resources, discover community programs,
+        or find support near you.
+      </p>
+
+      <div class="cta-buttons">
+
+        <a href="resources.html" class="primary-button">
+          Find Support
+        </a>
+
+        <a href="services.html" class="secondary-button">
+          Explore Our Services
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          A Mindful Resource
+        </div>
+
+        <p class="footer-description">
+          Connecting communities with mental wellness resources,
+          support, and opportunities for connection.
+        </p>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h4>Explore</h4>
+
+        <a href="about.html">About</a>
+        <a href="services.html">Services</a>
+        <a href="wellness.html">Wellness</a>
+        <a href="events.html">Events</a>
+        <a href="donate.html">Donate</a>
+
+      </div>
+
+      <div class="footer-column">
+
+        <h4>Resources</h4>
+
+        <a href="resources.html">Find Support</a>
+        <a href="directory.html">Directory</a>
+        <a href="map.html">Resource Map</a>
+        <a href="submit-resource.html">Submit a Resource</a>
+
+      </div>
+
+    </div>
+
+    <div class="copyright">
+      © 2026 A Mindful Resource
+    </div>
+
+  </footer>
+
+</body>
+</html>
