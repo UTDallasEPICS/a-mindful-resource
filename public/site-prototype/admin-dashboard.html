@@ -1,0 +1,1295 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard | A Mindful Resource</title>
+
+  <style>
+    :root {
+      --forest: #21483b;
+      --deep: #193a30;
+      --cream: #f2ede3;
+      --light: #faf7f0;
+      --gold: #c89545;
+      --sage: #dce3de;
+      --text: #203a31;
+      --muted: #66756d;
+      --white: #ffffff;
+      --border: #e1e5de;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--light);
+      color: var(--text);
+    }
+
+    button, input, textarea, select {
+      font: inherit;
+    }
+
+    button { cursor: pointer; }
+
+    .layout {
+      display: flex;
+      min-height: 100vh;
+    }
+
+    .sidebar {
+      width: 255px;
+      flex-shrink: 0;
+      background: var(--deep);
+      color: white;
+      padding: 30px 18px;
+    }
+
+    .brand {
+      font-family: Georgia, serif;
+      font-size: 24px;
+      line-height: 1.3;
+      padding: 0 12px 30px;
+      border-bottom: 1px solid #476357;
+    }
+
+    .brand span {
+      display: block;
+      color: #dfb56e;
+      font: 12px Arial, sans-serif;
+      letter-spacing: 2px;
+      margin-top: 9px;
+    }
+
+    .menu { margin-top: 30px; }
+
+    .menu button {
+      display: block;
+      width: 100%;
+      padding: 15px;
+      margin-bottom: 8px;
+      text-align: left;
+      color: #e3ebe5;
+      background: transparent;
+      border: 0;
+      border-radius: 8px;
+    }
+
+    .menu button:hover,
+    .menu button.active {
+      background: #345b4b;
+      color: white;
+    }
+
+    .sidebar-note {
+      margin-top: 45px;
+      padding: 15px;
+      background: #315344;
+      border-radius: 10px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .main {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .topbar {
+      background: white;
+      padding: 22px 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .topbar h2 {
+      margin: 0;
+      font-family: Georgia, serif;
+      font-size: 23px;
+    }
+
+    .admin-pill {
+      background: var(--cream);
+      padding: 10px 16px;
+      border-radius: 30px;
+      font-size: 13px;
+    }
+
+    .content {
+      padding: 35px;
+      max-width: 1400px;
+      margin: auto;
+    }
+
+    .page { display: none; }
+    .page.active { display: block; }
+
+    .eyebrow {
+      color: #98703b;
+      font-size: 12px;
+      font-weight: bold;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-family: Georgia, serif;
+      font-size: 34px;
+      margin: 10px 0;
+    }
+
+    h3 { margin-top: 0; }
+
+    .subtitle {
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 28px;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 23px;
+      margin-bottom: 20px;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .stat-number {
+      font-size: 34px;
+      font-weight: bold;
+      margin: 12px 0 5px;
+    }
+
+    .stat-note {
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      margin-bottom: 18px;
+    }
+
+    .section-header h3 { margin: 0; }
+
+    .btn {
+      border: none;
+      border-radius: 7px;
+      padding: 10px 15px;
+      background: var(--forest);
+      color: white;
+      font-size: 13px;
+    }
+
+    .btn:hover { opacity: 0.88; }
+
+    .btn.gold {
+      background: var(--gold);
+      color: #211b11;
+    }
+
+    .btn.outline {
+      background: white;
+      color: var(--forest);
+      border: 1px solid var(--forest);
+    }
+
+    .btn.danger { background: #a34e46; }
+
+    .btn.small {
+      padding: 8px 11px;
+      font-size: 12px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+    }
+
+    .table-wrap { overflow-x: auto; }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th {
+      text-align: left;
+      color: var(--muted);
+      font-size: 12px;
+      background: #f7f8f5;
+    }
+
+    th, td {
+      padding: 15px 12px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      background: #e6ede8;
+      color: #285542;
+    }
+
+    .badge.pending {
+      background: #fff0d4;
+      color: #94651c;
+    }
+
+    .badge.rejected,
+    .badge.cancelled {
+      background: #f7e3e0;
+      color: #a34e46;
+    }
+
+    .badge.inactive {
+      background: #ededed;
+      color: #666;
+    }
+
+    .two-column {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .field { margin-bottom: 15px; }
+
+    .field.full { grid-column: 1 / -1; }
+
+    label {
+      display: block;
+      font-size: 13px;
+      font-weight: bold;
+      margin-bottom: 7px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #ccd5ce;
+      border-radius: 7px;
+      background: white;
+      color: var(--text);
+    }
+
+    textarea {
+      min-height: 95px;
+      resize: vertical;
+    }
+
+    .search {
+      max-width: 350px;
+      margin-bottom: 20px;
+    }
+
+    .message {
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-bottom: 12px;
+      background: white;
+    }
+
+    .message.unread {
+      border-left: 4px solid var(--gold);
+    }
+
+    .message p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .notice {
+      background: #eaf0e9;
+      padding: 15px;
+      border-radius: 8px;
+      font-size: 13px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.55);
+      z-index: 100;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .modal-backdrop.open { display: flex; }
+
+    .modal {
+      background: white;
+      width: 100%;
+      max-width: 570px;
+      max-height: 90vh;
+      overflow-y: auto;
+      border-radius: 14px;
+      padding: 28px;
+    }
+
+    .modal h2 {
+      font-family: Georgia, serif;
+      margin-top: 0;
+    }
+
+    .modal-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--deep);
+      color: white;
+      padding: 15px 20px;
+      border-radius: 9px;
+      display: none;
+      z-index: 200;
+      max-width: 340px;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 30px;
+    }
+
+    @media (max-width: 1050px) {
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .two-column { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 750px) {
+      .layout { display: block; }
+      .sidebar { width: 100%; }
+      .menu { display: flex; flex-wrap: wrap; gap: 5px; }
+      .menu button { width: auto; }
+      .sidebar-note { display: none; }
+      .content { padding: 20px; }
+      .topbar { padding: 20px; }
+      .stats, .form-grid { grid-template-columns: 1fr; }
+      .section-header { align-items: flex-start; flex-direction: column; }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="brand">
+      A Mindful Resource
+      <span>ADMIN DASHBOARD</span>
+    </div>
+
+    <nav class="menu">
+      <button class="active" data-page="overview">Overview</button>
+      <button data-page="approvals">Resource Approvals</button>
+      <button data-page="resources">Manage Resources</button>
+      <button data-page="events">Manage Events</button>
+      <button data-page="messages">Messages & Inquiries</button>
+    </nav>
+
+    <div class="sidebar-note">
+      <strong>Administrator Workspace</strong>
+      <p>Manage resources, review submissions, organize events, and respond to community inquiries.</p>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <header class="topbar">
+      <h2 id="topTitle">Overview</h2>
+      <span class="admin-pill">Administrator · Dominique</span>
+    </header>
+
+    <div class="content">
+
+      <div class="notice">
+        <strong>Prototype Mode:</strong>
+        This dashboard uses sample data. Changes are only stored temporarily in your browser and reset when the page reloads.
+      </div>
+
+      <!-- OVERVIEW -->
+      <section id="overview" class="page active">
+        <span class="eyebrow">Welcome Back</span>
+        <h1>Dashboard Overview</h1>
+        <p class="subtitle">Here's a summary of what's happening across A Mindful Resource.</p>
+
+        <div class="stats">
+          <div class="card">
+            <div class="stat-label">Published Resources</div>
+            <div class="stat-number" id="statResources">0</div>
+            <div class="stat-note">Available in the directory</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Pending Approvals</div>
+            <div class="stat-number" id="statPending">0</div>
+            <div class="stat-note">Awaiting your review</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Upcoming Events</div>
+            <div class="stat-number" id="statEvents">0</div>
+            <div class="stat-note">Currently published</div>
+          </div>
+
+          <div class="card">
+            <div class="stat-label">Unread Messages</div>
+            <div class="stat-number" id="statMessages">0</div>
+            <div class="stat-note">Community inquiries</div>
+          </div>
+        </div>
+
+        <div class="two-column">
+          <div class="card">
+            <div class="section-header">
+              <h3>Pending Resource Submissions</h3>
+              <button class="btn small outline" onclick="showPage('approvals')">View All</button>
+            </div>
+            <div id="overviewApprovals"></div>
+          </div>
+
+          <div class="card">
+            <div class="section-header">
+              <h3>Upcoming Events</h3>
+              <button class="btn small outline" onclick="showPage('events')">Manage</button>
+            </div>
+            <div id="overviewEvents"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Recent Activity</h3>
+          <div id="activityList"></div>
+        </div>
+      </section>
+
+      <!-- APPROVALS -->
+      <section id="approvals" class="page">
+        <span class="eyebrow">Provider Verification</span>
+        <h1>Resource Approvals</h1>
+        <p class="subtitle">
+          Review submitted resources before allowing them to appear in the public directory.
+        </p>
+
+        <div class="card">
+          <div class="section-header">
+            <h3>Provider Submissions</h3>
+            <span class="badge pending" id="pendingLabel">0 Pending</span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Provider / Organization</th>
+                  <th>Category</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="approvalsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- RESOURCES -->
+      <section id="resources" class="page">
+        <span class="eyebrow">Resource Directory</span>
+        <h1>Manage Resources</h1>
+        <p class="subtitle">
+          Add, update, deactivate, or remove resources and their location information.
+        </p>
+
+        <div class="section-header">
+          <input
+            class="search"
+            id="resourceSearch"
+            placeholder="Search resources..."
+            oninput="renderResources()"
+          >
+          <button class="btn gold" onclick="openResourceForm()">+ Add Resource</button>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Resource</th>
+                  <th>Category</th>
+                  <th>Address / Map Location</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="resourcesTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- EVENTS -->
+      <section id="events" class="page">
+        <span class="eyebrow">Community Calendar</span>
+        <h1>Manage Events</h1>
+        <p class="subtitle">
+          Create and maintain community events, workshops, and wellness programs.
+        </p>
+
+        <div class="section-header">
+          <h3>Event Listings</h3>
+          <button class="btn gold" onclick="openEventForm()">+ Create Event</button>
+        </div>
+
+        <div class="card">
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Event</th>
+                  <th>Date</th>
+                  <th>Location</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="eventsTable"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- MESSAGES -->
+      <section id="messages" class="page">
+        <span class="eyebrow">Community Communication</span>
+        <h1>Messages & Inquiries</h1>
+        <p class="subtitle">
+          Review inquiries from providers, community partners, and website visitors.
+        </p>
+
+        <div class="card">
+          <div class="section-header">
+            <h3>Inbox</h3>
+            <span class="badge" id="unreadLabel">0 Unread</span>
+          </div>
+
+          <div id="messagesList"></div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+</div>
+
+<!-- MODAL -->
+<div class="modal-backdrop" id="modalBackdrop">
+  <div class="modal">
+    <h2 id="modalTitle">Details</h2>
+    <div id="modalBody"></div>
+    <div class="modal-actions">
+      <button class="btn outline" onclick="closeModal()">Close</button>
+      <button class="btn gold" id="modalSave" style="display:none">Save</button>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // SAMPLE DATA — FRONTEND PROTOTYPE ONLY
+
+  let nextId = 100;
+
+  let submissions = [
+    {
+      id: 1,
+      name: "Hope Community Wellness",
+      category: "Counseling",
+      location: "Richardson, TX",
+      contact: "contact@example.com",
+      description: "Community-based counseling and wellness support.",
+      status: "Pending"
+    },
+    {
+      id: 2,
+      name: "New Leaf Therapy Collective",
+      category: "Therapy",
+      location: "Plano, TX",
+      contact: "provider@example.com",
+      description: "Individual and group therapy services.",
+      status: "Pending"
+    },
+    {
+      id: 3,
+      name: "Oak & Sage Counseling",
+      category: "Mental Wellness",
+      location: "Addison, TX",
+      contact: "office@example.com",
+      description: "Mental wellness and family support services.",
+      status: "Pending"
+    }
+  ];
+
+  let resources = [
+    {
+      id: 11,
+      name: "North Dallas Counseling Center",
+      category: "Counseling",
+      address: "Richardson, TX 75080",
+      status: "Published"
+    },
+    {
+      id: 12,
+      name: "Serenity Behavioral Health",
+      category: "Behavioral Health",
+      address: "Dallas, TX 75243",
+      status: "Published"
+    },
+    {
+      id: 13,
+      name: "Community Wellness Program",
+      category: "Community Support",
+      address: "Plano, TX 75075",
+      status: "Inactive"
+    }
+  ];
+
+  let events = [
+    {
+      id: 21,
+      title: "Community Wellness Workshop",
+      date: "2026-11-07",
+      location: "Dallas, TX",
+      description: "A community workshop focused on mental wellness.",
+      status: "Published"
+    },
+    {
+      id: 22,
+      title: "Mental Health Resource Fair",
+      date: "2026-11-14",
+      location: "Richardson, TX",
+      description: "Connecting community members with support resources.",
+      status: "Published"
+    },
+    {
+      id: 23,
+      title: "Mindfulness & Connection",
+      date: "2026-11-21",
+      location: "Virtual",
+      description: "A guided wellness and community connection event.",
+      status: "Draft"
+    }
+  ];
+
+  let messages = [
+    {
+      id: 31,
+      sender: "Community Partner",
+      email: "partner@example.com",
+      subject: "Partnership Opportunity",
+      body: "Hello, we would like to learn more about partnering with A Mindful Resource.",
+      unread: true,
+      status: "Open"
+    },
+    {
+      id: 32,
+      sender: "Provider Representative",
+      email: "provider@example.com",
+      subject: "Resource Listing Question",
+      body: "I have a question about submitting our organization to the directory.",
+      unread: true,
+      status: "Open"
+    },
+    {
+      id: 33,
+      sender: "Website Visitor",
+      email: "visitor@example.com",
+      subject: "Upcoming Events",
+      body: "Where can I find information about upcoming community events?",
+      unread: false,
+      status: "Open"
+    }
+  ];
+
+  let activity = [
+    "Admin dashboard prototype initialized",
+    "Sample resources and events loaded"
+  ];
+
+  // UTILITIES
+
+  function escapeHTML(value) {
+    return String(value ?? "")
+      .replaceAll("&", "&amp;")
+      .replaceAll("<", "&lt;")
+      .replaceAll(">", "&gt;")
+      .replaceAll('"', "&quot;")
+      .replaceAll("'", "&#39;");
+  }
+
+  function badge(status) {
+    const style = status.toLowerCase().replaceAll(" ", "-");
+    return `<span class="badge ${style}">${escapeHTML(status)}</span>`;
+  }
+
+  function addActivity(text) {
+    activity.unshift(text);
+    renderAll();
+  }
+
+  function toast(message) {
+    const element = document.getElementById("toast");
+    element.textContent = message;
+    element.style.display = "block";
+
+    clearTimeout(window.toastTimer);
+    window.toastTimer = setTimeout(() => {
+      element.style.display = "none";
+    }, 3000);
+  }
+
+  function showPage(page) {
+    document.querySelectorAll(".page").forEach(section => {
+      section.classList.toggle("active", section.id === page);
+    });
+
+    document.querySelectorAll(".menu button").forEach(button => {
+      button.classList.toggle("active", button.dataset.page === page);
+    });
+
+    const titles = {
+      overview: "Overview",
+      approvals: "Resource Approvals",
+      resources: "Manage Resources",
+      events: "Manage Events",
+      messages: "Messages & Inquiries"
+    };
+
+    document.getElementById("topTitle").textContent = titles[page];
+    renderAll();
+    window.scrollTo(0, 0);
+  }
+
+  document.querySelectorAll(".menu button").forEach(button => {
+    button.addEventListener("click", () => showPage(button.dataset.page));
+  });
+
+  function openModal(title, html, saveCallback) {
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalBody").innerHTML = html;
+
+    const save = document.getElementById("modalSave");
+
+    if (saveCallback) {
+      save.style.display = "inline-block";
+      save.onclick = saveCallback;
+    } else {
+      save.style.display = "none";
+      save.onclick = null;
+    }
+
+    document.getElementById("modalBackdrop").classList.add("open");
+  }
+
+  function closeModal() {
+    document.getElementById("modalBackdrop").classList.remove("open");
+  }
+
+  document.getElementById("modalBackdrop").addEventListener("click", event => {
+    if (event.target.id === "modalBackdrop") closeModal();
+  });
+
+  // OVERVIEW
+
+  function renderOverview() {
+    document.getElementById("statResources").textContent =
+      resources.filter(r => r.status === "Published").length;
+
+    document.getElementById("statPending").textContent =
+      submissions.filter(s => s.status === "Pending").length;
+
+    document.getElementById("statEvents").textContent =
+      events.filter(e => e.status === "Published" && e.date >= "2026-10-11").length;
+
+    document.getElementById("statMessages").textContent =
+      messages.filter(m => m.unread).length;
+
+    const pending = submissions.filter(s => s.status === "Pending");
+
+    document.getElementById("overviewApprovals").innerHTML =
+      pending.length
+        ? pending.map(s => `
+            <p>
+              <strong>${escapeHTML(s.name)}</strong><br>
+              <small>${escapeHTML(s.category)} · ${escapeHTML(s.location)}</small>
+            </p>
+          `).join("")
+        : '<p class="empty">No pending submissions.</p>';
+
+    const upcoming = events.filter(e =>
+      e.status === "Published" && e.date >= "2026-10-11"
+    );
+
+    document.getElementById("overviewEvents").innerHTML =
+      upcoming.length
+        ? upcoming.map(e => `
+            <p>
+              <strong>${escapeHTML(e.title)}</strong><br>
+              <small>${escapeHTML(e.date)} · ${escapeHTML(e.location)}</small>
+            </p>
+          `).join("")
+        : '<p class="empty">No upcoming published events.</p>';
+
+    document.getElementById("activityList").innerHTML =
+      activity.slice(0, 6).map(a =>
+        `<p>• ${escapeHTML(a)}</p>`
+      ).join("");
+  }
+
+  // RESOURCE APPROVALS
+
+  function renderApprovals() {
+    const pendingCount = submissions.filter(s => s.status === "Pending").length;
+    document.getElementById("pendingLabel").textContent =
+      pendingCount + " Pending";
+
+    document.getElementById("approvalsTable").innerHTML =
+      submissions.map(s => `
+        <tr>
+          <td><strong>${escapeHTML(s.name)}</strong></td>
+          <td>${escapeHTML(s.category)}</td>
+          <td>${escapeHTML(s.location)}</td>
+          <td>${badge(s.status)}</td>
+          <td>
+            <div class="actions">
+              <button class="btn small outline" onclick="reviewSubmission(${s.id})">
+                Review
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+  }
+
+  function reviewSubmission(id) {
+    const s = submissions.find(item => item.id === id);
+    if (!s) return;
+
+    openModal("Review Provider Submission", `
+      <p><strong>Organization:</strong> ${escapeHTML(s.name)}</p>
+      <p><strong>Category:</strong> ${escapeHTML(s.category)}</p>
+      <p><strong>Location:</strong> ${escapeHTML(s.location)}</p>
+      <p><strong>Contact:</strong> ${escapeHTML(s.contact)}</p>
+      <p><strong>Description:</strong> ${escapeHTML(s.description)}</p>
+      <p><strong>Status:</strong> ${badge(s.status)}</p>
+
+      ${s.status === "Pending" ? `
+        <div class="actions">
+          <button class="btn" onclick="decideSubmission(${id}, 'Approved')">
+            Approve
+          </button>
+          <button class="btn danger" onclick="decideSubmission(${id}, 'Rejected')">
+            Reject
+          </button>
+          <button class="btn outline" onclick="requestCorrections(${id})">
+            Request Corrections
+          </button>
+        </div>
+      ` : ""}
+    `);
+  }
+
+  function decideSubmission(id, decision) {
+    const s = submissions.find(item => item.id === id);
+    if (!s) return;
+
+    if (decision === "Rejected" &&
+        !confirm("Reject this provider submission?")) return;
+
+    s.status = decision;
+
+    if (decision === "Approved") {
+      resources.push({
+        id: ++nextId,
+        name: s.name,
+        category: s.category,
+        address: s.location,
+        status: "Published"
+      });
+    }
+
+    closeModal();
+    addActivity(`${s.name}: submission ${decision.toLowerCase()}`);
+    toast(`Submission ${decision.toLowerCase()} (demo only).`);
+  }
+
+  function requestCorrections(id) {
+    const s = submissions.find(item => item.id === id);
+    if (!s) return;
+
+    openModal("Request Corrections", `
+      <p>Request additional information from ${escapeHTML(s.name)}.</p>
+      <div class="field">
+        <label for="correctionText">Corrections Needed</label>
+        <textarea id="correctionText" placeholder="Describe what needs to be corrected..."></textarea>
+      </div>
+    `, () => {
+      const text = document.getElementById("correctionText").value.trim();
+      if (!text) return toast("Please enter a correction request.");
+
+      s.status = "Corrections Requested";
+      closeModal();
+      addActivity(`Corrections requested for ${s.name}`);
+      toast("Correction request saved in prototype. No email sent.");
+    });
+  }
+
+  // MANAGE RESOURCES
+
+  function renderResources() {
+    const search = document.getElementById("resourceSearch").value.toLowerCase();
+
+    document.getElementById("resourcesTable").innerHTML =
+      resources.filter(r =>
+        (r.name + r.category + r.address).toLowerCase().includes(search)
+      ).map(r => `
+        <tr>
+          <td><strong>${escapeHTML(r.name)}</strong></td>
+          <td>${escapeHTML(r.category)}</td>
+          <td>${escapeHTML(r.address)}</td>
+          <td>${badge(r.status)}</td>
+          <td>
+            <div class="actions">
+              <button class="btn small outline" onclick="openResourceForm(${r.id})">
+                Edit
+              </button>
+              <button class="btn small" onclick="toggleResource(${r.id})">
+                ${r.status === "Published" ? "Deactivate" : "Publish"}
+              </button>
+              <button class="btn small danger" onclick="removeResource(${r.id})">
+                Remove
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+  }
+
+  function openResourceForm(id = null) {
+    const r = resources.find(item => item.id === id);
+
+    openModal(r ? "Edit Resource" : "Add Resource", `
+      <div class="form-grid">
+        <div class="field full">
+          <label>Resource Name</label>
+          <input id="rName" value="${escapeHTML(r?.name || "")}">
+        </div>
+        <div class="field">
+          <label>Category</label>
+          <input id="rCategory" value="${escapeHTML(r?.category || "")}">
+        </div>
+        <div class="field">
+          <label>Status</label>
+          <select id="rStatus">
+            <option ${r?.status === "Published" ? "selected" : ""}>Published</option>
+            <option ${r?.status === "Inactive" ? "selected" : ""}>Inactive</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label>Address / Map Location</label>
+          <input id="rAddress" value="${escapeHTML(r?.address || "")}"
+                 placeholder="Street, City, State, ZIP">
+        </div>
+      </div>
+    `, () => {
+      const name = document.getElementById("rName").value.trim();
+      const category = document.getElementById("rCategory").value.trim();
+      const address = document.getElementById("rAddress").value.trim();
+      const status = document.getElementById("rStatus").value;
+
+      if (!name || !category || !address) {
+        return toast("Please complete all resource fields.");
+      }
+
+      if (r) {
+        Object.assign(r, { name, category, address, status });
+      } else {
+        resources.push({
+          id: ++nextId, name, category, address, status
+        });
+      }
+
+      closeModal();
+      addActivity(`${r ? "Updated" : "Added"} resource: ${name}`);
+      toast("Resource saved in prototype.");
+    });
+  }
+
+  function toggleResource(id) {
+    const r = resources.find(item => item.id === id);
+    if (!r) return;
+
+    r.status = r.status === "Published" ? "Inactive" : "Published";
+    addActivity(`${r.name}: ${r.status}`);
+    toast("Resource status updated.");
+  }
+
+  function removeResource(id) {
+    const r = resources.find(item => item.id === id);
+    if (!r || !confirm(`Remove ${r.name}?`)) return;
+
+    resources = resources.filter(item => item.id !== id);
+    addActivity(`Removed resource: ${r.name}`);
+    toast("Resource removed from prototype.");
+  }
+
+  // MANAGE EVENTS
+
+  function renderEvents() {
+    document.getElementById("eventsTable").innerHTML =
+      events.map(e => `
+        <tr>
+          <td><strong>${escapeHTML(e.title)}</strong></td>
+          <td>${escapeHTML(e.date)}</td>
+          <td>${escapeHTML(e.location)}</td>
+          <td>${badge(e.status)}</td>
+          <td>
+            <div class="actions">
+              <button class="btn small outline" onclick="openEventForm(${e.id})">
+                Edit
+              </button>
+              <button class="btn small" onclick="toggleEvent(${e.id})">
+                ${e.status === "Published" ? "Unpublish" : "Publish"}
+              </button>
+              <button class="btn small outline" onclick="cancelEvent(${e.id})">
+                Cancel
+              </button>
+              <button class="btn small danger" onclick="deleteEvent(${e.id})">
+                Delete
+              </button>
+            </div>
+          </td>
+        </tr>
+      `).join("");
+  }
+
+  function openEventForm(id = null) {
+    const e = events.find(item => item.id === id);
+
+    openModal(e ? "Edit Event" : "Create Event", `
+      <div class="form-grid">
+        <div class="field full">
+          <label>Event Title</label>
+          <input id="eTitle" value="${escapeHTML(e?.title || "")}">
+        </div>
+        <div class="field">
+          <label>Date</label>
+          <input id="eDate" type="date" value="${escapeHTML(e?.date || "")}">
+        </div>
+        <div class="field">
+          <label>Location</label>
+          <input id="eLocation" value="${escapeHTML(e?.location || "")}">
+        </div>
+        <div class="field full">
+          <label>Description</label>
+          <textarea id="eDescription">${escapeHTML(e?.description || "")}</textarea>
+        </div>
+        <div class="field full">
+          <label>Status</label>
+          <select id="eStatus">
+            <option ${e?.status === "Draft" ? "selected" : ""}>Draft</option>
+            <option ${e?.status === "Published" ? "selected" : ""}>Published</option>
+            <option ${e?.status === "Cancelled" ? "selected" : ""}>Cancelled</option>
+          </select>
+        </div>
+      </div>
+    `, () => {
+      const title = document.getElementById("eTitle").value.trim();
+      const date = document.getElementById("eDate").value;
+      const location = document.getElementById("eLocation").value.trim();
+      const description = document.getElementById("eDescription").value.trim();
+      const status = document.getElementById("eStatus").value;
+
+      if (!title || !date || !location) {
+        return toast("Please enter an event title, date, and location.");
+      }
+
+      if (e) {
+        Object.assign(e, { title, date, location, description, status });
+      } else {
+        events.push({
+          id: ++nextId, title, date, location, description, status
+        });
+      }
+
+      closeModal();
+      addActivity(`${e ? "Updated" : "Created"} event: ${title}`);
+      toast("Event saved in prototype.");
+    });
+  }
+
+  function toggleEvent(id) {
+    const e = events.find(item => item.id === id);
+    if (!e) return;
+
+    e.status = e.status === "Published" ? "Draft" : "Published";
+    addActivity(`${e.title}: ${e.status}`);
+    toast("Event status updated.");
+  }
+
+  function cancelEvent(id) {
+    const e = events.find(item => item.id === id);
+    if (!e || !confirm(`Cancel ${e.title}?`)) return;
+
+    e.status = "Cancelled";
+    addActivity(`Cancelled event: ${e.title}`);
+    toast("Event cancelled in prototype.");
+  }
+
+  function deleteEvent(id) {
+    const e = events.find(item => item.id === id);
+    if (!e || !confirm(`Delete ${e.title}?`)) return;
+
+    events = events.filter(item => item.id !== id);
+    addActivity(`Deleted event: ${e.title}`);
+    toast("Event deleted from prototype.");
+  }
+
+  // MESSAGES & INQUIRIES
+
+  function renderMessages() {
+    const unread = messages.filter(m => m.unread).length;
+    document.getElementById("unreadLabel").textContent = unread + " Unread";
+
+    document.getElementById("messagesList").innerHTML =
+      messages.length
+        ? messages.map(m => `
+          <div class="message ${m.unread ? "unread" : ""}">
+            <div class="section-header">
+              <div>
+                <strong>${escapeHTML(m.subject)}</strong>
+                ${m.unread ? badge("New") : ""}
+                <p>${escapeHTML(m.sender)} · ${escapeHTML(m.email)}</p>
+              </div>
+              ${badge(m.status)}
+            </div>
+            <p>${escapeHTML(m.body)}</p>
+            <div class="actions">
+              <button class="btn small outline" onclick="openMessage(${m.id})">
+                Open / Reply
+              </button>
+              <button class="btn small" onclick="resolveMessage(${m.id})">
+                ${m.status === "Resolved" ? "Reopen" : "Mark Resolved"}
+              </button>
+            </div>
+          </div>
+        `).join("")
+        : '<p class="empty">No messages.</p>';
+  }
+
+  function openMessage(id) {
+    const m = messages.find(item => item.id === id);
+    if (!m) return;
+
+    m.unread = false;
+    renderAll();
+
+    openModal("Message Details", `
+      <p><strong>From:</strong> ${escapeHTML(m.sender)}</p>
+      <p><strong>Email:</strong> ${escapeHTML(m.email)}</p>
+      <p><strong>Subject:</strong> ${escapeHTML(m.subject)}</p>
+      <p>${escapeHTML(m.body)}</p>
+
+      <div class="field">
+        <label>Draft Reply</label>
+        <textarea id="replyText" placeholder="Write your response..."></textarea>
+      </div>
+      <p style="font-size:12px;color:#66756d">
+        Demo only: replies are not actually emailed.
+      </p>
+    `, () => {
+      const reply = document.getElementById("replyText").value.trim();
+      if (!reply) return toast("Please write a reply first.");
+
+      closeModal();
+      addActivity(`Drafted reply to ${m.sender}`);
+      toast("Reply drafted in prototype. No email was sent.");
+    });
+  }
+
+  function resolveMessage(id) {
+    const m = messages.find(item => item.id === id);
+    if (!m) return;
+
+    m.status = m.status === "Resolved" ? "Open" : "Resolved";
+    m.unread = false;
+
+    addActivity(`${m.subject}: ${m.status}`);
+    toast("Message status updated.");
+  }
+
+  // RENDER EVERYTHING
+
+  function renderAll() {
+    renderOverview();
+    renderApprovals();
+    renderResources();
+    renderEvents();
+    renderMessages();
+  }
+
+  renderAll();
+</script>
+
+</body>
+</html>
