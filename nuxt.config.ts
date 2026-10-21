@@ -4,6 +4,10 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/image', '@nuxt/eslint'],
   css: ['./assets/css/main.css'],
+  // The brand palette is light-only. See docs/styling.md.
+  ui: {
+    colorMode: false,
+  },
   // Prettier owns formatting; ESLint handles logic only (no stylistic rules).
   eslint: {
     config: {

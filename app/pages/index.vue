@@ -79,10 +79,8 @@
   <UContainer class="py-10">
     <div class="mb-8 flex flex-col justify-between gap-4 md:flex-row md:items-center">
       <div>
-        <h1 class="text-3xl font-bold tracking-tight text-gray-900 dark:text-white">Dashboard</h1>
-        <p class="mt-1 text-gray-500 dark:text-gray-400">
-          Manage your application users and settings.
-        </p>
+        <h1 class="text-3xl font-bold tracking-tight text-forest-deep">Dashboard</h1>
+        <p class="mt-1 text-ink-muted">Manage your application users and settings.</p>
       </div>
       <div class="flex justify-between gap-4 md:items-center">
         <UModal :open="isModalOpen">
@@ -96,9 +94,7 @@
 
           <template #content>
             <div class="m-12 space-y-4">
-              <h3 class="text-lg font-medium text-gray-900 dark:text-white">
-                Update Profile Picture
-              </h3>
+              <h3 class="text-lg font-medium text-forest-deep">Update Profile Picture</h3>
 
               <div v-if="imagePreview" class="flex justify-center">
                 <UAvatar :src="imagePreview" size="3xl" />
@@ -108,7 +104,7 @@
                 <input
                   type="file"
                   accept="image/*"
-                  class="file:bg-primary-50 file:text-brand4 hover:file:bg-primary-100 block w-full cursor-pointer text-sm text-gray-500 file:mr-4 file:rounded-full file:border-0 file:px-4 file:py-2 file:text-sm file:font-semibold"
+                  class="block w-full cursor-pointer text-sm text-ink-muted file:mr-4 file:rounded-full file:border-0 file:bg-sage-light file:px-4 file:py-2 file:text-sm file:font-semibold file:text-forest-deep hover:file:bg-line"
                   @change="handleImageUpload"
                 />
               </div>
@@ -141,10 +137,8 @@
       <template #header>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-2">
-            <UIcon name="i-heroicons-users-20-solid" class="h-5 w-5 text-gray-500" />
-            <h2 class="text-base leading-7 font-semibold text-gray-900 dark:text-white">
-              Registered Users
-            </h2>
+            <UIcon name="i-heroicons-users-20-solid" class="h-5 w-5 text-ink-muted" />
+            <h2 class="text-base leading-7 font-semibold text-forest-deep">Registered Users</h2>
           </div>
           <UBadge variant="subtle" color="primary" size="md">{{ users?.length || 0 }} Users</UBadge>
         </div>
@@ -172,7 +166,7 @@
         />
       </div>
 
-      <div v-else class="divide-y divide-gray-200 dark:divide-gray-800">
+      <div v-else class="divide-y divide-line">
         <div
           v-for="user in users"
           :key="user.id"
@@ -181,8 +175,8 @@
           <div class="flex items-center gap-3">
             <UAvatar :src="getImageLink(user)" :alt="user.name" size="md" :as="{ img: 'img' }" />
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">{{ user.name }}</p>
-              <p class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</p>
+              <p class="font-medium text-forest-deep">{{ user.name }}</p>
+              <p class="text-sm text-ink-muted">{{ user.email }}</p>
             </div>
           </div>
           <UBadge :color="user.emailVerified ? 'success' : 'warning'" variant="subtle" size="sm">
@@ -190,7 +184,9 @@
           </UBadge>
         </div>
 
-        <div v-if="users?.length === 0" class="py-8 text-center text-gray-500">No users found.</div>
+        <div v-if="users?.length === 0" class="py-8 text-center text-ink-muted">
+          No users found.
+        </div>
       </div>
     </UCard>
   </UContainer>
