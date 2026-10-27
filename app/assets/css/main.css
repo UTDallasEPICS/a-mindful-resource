@@ -1,2 +1,80 @@
 @import 'tailwindcss';
 @import '@nuxt/ui';
+
+/*
+ * Brand palette. Every color in the app comes from this list.
+ * Each token becomes a Tailwind utility: --color-forest gives bg-forest,
+ * text-forest, border-forest, and so on.
+ *
+ * Do not use hex values, bg-[#...], or Tailwind defaults (gray-*, green-*)
+ * in components. Need a new color? Add it here and to docs/styling.md.
+ * See docs/styling.md for which color goes where.
+ */
+@theme {
+  /* Greens */
+  --color-forest: #21483b; /* hero, feature bands, primary buttons */
+  --color-forest-deep: #193a30; /* navbar, footer, headings on light, hover for forest */
+  --color-forest-line: #36584c; /* dividers on forest backgrounds */
+  --color-sage: #8fa397; /* decorative accents, strong borders */
+  --color-sage-light: #dce3de; /* soft section backgrounds, soft cards */
+
+  /* Golds */
+  --color-gold: #c89545; /* call-to-action buttons */
+  --color-gold-hover: #b98538; /* hover for gold buttons */
+  --color-gold-light: #dfb56e; /* eyebrows, active nav link on dark backgrounds */
+  --color-gold-deep: #866229; /* eyebrows, numbers, links on light backgrounds */
+
+  /* Backgrounds */
+  --color-cream: #f2ede3; /* page background */
+  --color-cream-light: #faf7f0; /* cards, inputs, alternate sections */
+
+  /* Text on light backgrounds */
+  --color-ink: #203a31; /* body text */
+  --color-ink-muted: #56695f; /* secondary text, descriptions */
+  --color-line: #d8ddd8; /* borders on cards and inputs */
+
+  /* Text on dark backgrounds */
+  --color-paper: #fcfaf5; /* logo, headings, button text */
+  --color-mist: #d7e0da; /* body text, nav links */
+  --color-mist-muted: #aebdb5; /* secondary text, footer links, outline buttons */
+
+  /* Fonts */
+  --font-sans: Arial, Helvetica, sans-serif;
+  --font-serif: Georgia, 'Times New Roman', serif; /* all headings */
+}
+
+/*
+ * Point Nuxt UI components (UButton, UCard, UInput...) at the palette so they
+ * match without extra classes. Buttons: color="primary" is forest,
+ * color="secondary" is gold, color="neutral" is outline/ghost.
+ */
+:root {
+  --ui-primary: var(--color-forest);
+  --ui-secondary: var(--color-gold);
+
+  --ui-text-dimmed: var(--color-ink-muted);
+  --ui-text-muted: var(--color-ink-muted);
+  --ui-text-toned: var(--color-ink);
+  --ui-text: var(--color-ink);
+  --ui-text-highlighted: var(--color-forest-deep);
+  --ui-text-inverted: var(--color-paper);
+
+  --ui-bg: var(--color-cream);
+  --ui-bg-muted: var(--color-cream-light);
+  --ui-bg-elevated: var(--color-cream-light);
+  --ui-bg-accented: var(--color-sage-light);
+  --ui-bg-inverted: var(--color-forest-deep);
+
+  --ui-border: var(--color-line);
+  --ui-border-muted: var(--color-line);
+  --ui-border-accented: var(--color-sage);
+  --ui-border-inverted: var(--color-forest-deep);
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    font-family: var(--font-serif);
+  }
+}
