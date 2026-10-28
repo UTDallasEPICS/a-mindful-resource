@@ -72,7 +72,7 @@
 
   const timeline = ref<ChangelogVersionProps[]>([
     {
-      title: '2024 - The Vision',
+      title: '2023 - The Vision',
       description:
         'Founded by Dominique Johnson, MSN, RN — a nurse who watched the system fail his own community.',
     },
