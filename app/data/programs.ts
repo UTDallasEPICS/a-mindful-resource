@@ -15,19 +15,19 @@ export const PROGRAM_CATEGORIES = [
     name: 'Community Wellness',
     slug: 'community-wellness',
     description:
-      'Inclusive holistic health gatherings, sound healing, and educational wellness events welcoming all community members.',
+      'Accessible community initiatives, digital wellness tools, and mobile outreach welcoming all community members.',
   },
   {
-    name: 'Recovery & Support',
-    slug: 'recovery-support',
+    name: 'Care Navigation & Support',
+    slug: 'care-navigation-support',
     description:
-      'Compassionate, non-judgmental guidance and recovery circles fostering sustainable healing, hope, and connection.',
+      'Helping individuals and families navigate culturally aligned mental health providers and community resources.',
   },
   {
     name: 'Training & Education',
     slug: 'training-education',
     description:
-      'Skill-building seminars, professional development, and community certifications in mental health and mindfulness.',
+      'Practical, culturally responsive education, workshops, and certifications in mental health and community wellness.',
   },
 ] as const
 
@@ -50,144 +50,139 @@ export const programsPageContent = {
   title: 'Programs',
   eyebrow: 'Our Offerings',
   intro:
-    'Dedicated to cultivating wellness, emotional resilience, and community connection through accessible and inclusive programming.',
+    'A Mindful Resource Inc. creates trusted pathways to mental wellness through community connection, practical education, early awareness, and care navigation. Our Care Before Crisis™ approach meets people where they live, learn, work, and gather. Not therapy first. Trust first.',
 }
 
 export const programs: Program[] = [
-  // Men's Wellness
+  // 1. Men's Wellness
   {
-    id: 'placeholder-1',
-    name: 'Placeholder Program 1',
+    id: 'bro-chill',
+    name: 'Bro Chill™',
     category: "Men's Wellness",
-    tagline: 'Building connection, community, and mental wellness for men.',
-    audience: 'Adult men seeking connection and mutual support',
-    delivery: 'In-person weekly group meetings',
+    tagline:
+      'A culturally responsive wellness space for honest conversation and community connection.',
+    audience: 'Men, with particular attention to Black men and men facing barriers to support.',
+    delivery:
+      'Facilitated community gatherings and partner-hosted circles. Institutional offerings can include a six-week series; display community dates separately when confirmed.',
     purpose:
-      'Placeholder purpose describing peer support, open dialogue, and shared strategies for emotional well-being.',
-    nextStep: 'Register online or attend open orientation',
-    slug: 'placeholder-program-1',
-    href: 'https://example.com/programs/placeholder-1',
-  },
-  {
-    id: 'placeholder-2',
-    name: 'Placeholder Program 2',
-    category: "Men's Wellness",
-    tagline: 'Active mindfulness and stress reduction in the outdoors.',
-    audience: 'Men of all ages and fitness levels',
-    delivery: 'Bi-weekly outdoor sessions',
-    purpose:
-      'Placeholder purpose describing guided mindfulness walks and outdoor stress-reduction activities.',
-    nextStep: 'Contact program coordinator to join the next session',
-    slug: 'placeholder-program-2',
-    href: 'https://example.com/programs/placeholder-2',
+      'A culturally responsive wellness space where men can have honest conversations, build community, practice coping skills, and connect with additional support.',
+    nextStep: 'Explore Bro Chill at brochill.org or contact AMRI about hosting a circle.',
+    slug: 'bro-chill',
+    href: 'https://brochill.org',
   },
 
-  // Youth & Families
+  // 2. Youth & Families
   {
-    id: 'placeholder-3',
-    name: 'Placeholder Program 3',
+    id: 'real-talk-real-skills',
+    name: 'Real Talk. Real Skills.™ — Youth Emotional First Aid',
     category: 'Youth & Families',
-    tagline: 'Cultivating inner strength, resilience, and emotional agility.',
-    audience: 'Teens ages 13–18',
-    delivery: 'Interactive monthly workshops',
+    tagline: 'Youth emotional first aid helping young people manage stress and support friends.',
+    audience: 'Middle and high school students, with family and school involvement.',
+    delivery:
+      'School- and community-based cohorts. The school offering includes 12 weekly sessions, with scheduling coordinated through the host.',
     purpose:
-      'Placeholder purpose describing youth emotional resilience, life skills, and healthy coping mechanisms.',
-    nextStep: 'Parent or guardian registration form',
-    slug: 'placeholder-program-3',
-    href: 'https://example.com/programs/placeholder-3',
+      'Helps young people name their emotions, manage stress, support a friend, and reach a trusted adult before challenges escalate.',
+    nextStep: 'Bring This Program to Your School or contact AMRI about participation.',
+    slug: 'real-talk-real-skills',
   },
   {
-    id: 'placeholder-4',
-    name: 'Placeholder Program 4',
+    id: 'bro-rise',
+    name: 'BRO RISE™',
     category: 'Youth & Families',
-    tagline: 'Fostering calm communication and harmony in everyday family life.',
-    audience: 'Parents, caregivers, and children',
-    delivery: 'Bi-weekly family gatherings',
+    tagline: 'Mentorship and leadership development for boys and young men.',
+    audience: 'Boys and young men.',
+    delivery:
+      'Partner-coordinated cohorts; format and enrollment dates should be confirmed for each offering.',
     purpose:
-      'Placeholder purpose describing mindful communication routines and supportive family relationships.',
-    nextStep: 'Sign up for the upcoming family cohort',
-    slug: 'placeholder-program-4',
+      'Builds emotional intelligence, leadership, healthy relationships, and a sense of belonging through mentorship and practical experiences.',
+    nextStep: 'Ask About a Cohort or inquire about a school or community partnership.',
+    slug: 'bro-rise',
   },
 
-  // Community Wellness
+  // 3. Community Wellness
   {
-    id: 'placeholder-5',
-    name: 'Placeholder Program 5',
+    id: 'how-u-feel',
+    name: 'How U Feel™',
     category: 'Community Wellness',
-    tagline: 'Weekly sound baths and mindfulness gatherings open to all.',
-    audience: 'All community members',
-    delivery: 'Weekly drop-in sessions',
+    tagline: 'A digital wellness check-in tool to explore how you feel and find next steps.',
+    audience: 'People seeking a starting point for understanding their emotional well-being.',
+    delivery:
+      'Online, with opportunities to introduce the tool during community and partner events.',
     purpose:
-      'Placeholder purpose describing restorative sound baths, meditation, and inclusive stress relief.',
-    nextStep: 'Drop in; no prior registration required',
-    slug: 'placeholder-program-5',
-    href: 'https://example.com/programs/placeholder-5',
+      'A digital wellness check-in tool that encourages people to notice how they are feeling and explore resources and next steps.',
+    nextStep: 'Check In at howufeel.org',
+    slug: 'how-u-feel',
+    href: 'https://howufeel.org',
   },
   {
-    id: 'placeholder-6',
-    name: 'Placeholder Program 6',
+    id: 'wellness-on-wheels',
+    name: 'Wellness on Wheels™',
     category: 'Community Wellness',
-    tagline: 'Bringing holistic resources and care days directly to neighbors.',
-    audience: 'Neighborhood residents and families',
-    delivery: 'Quarterly community events',
+    tagline: 'Mobile wellness outreach bringing education, check-ins, and care to communities.',
+    audience: 'Neighborhoods and communities facing barriers to accessing wellness resources.',
+    delivery:
+      'Mobile, partner-based outreach. Public scheduling and booking availability pending confirmation.',
     purpose:
-      'Placeholder purpose describing wellness fairs, free holistic health screenings, and partner resources.',
-    nextStep: 'View community event calendar and RSVP',
-    slug: 'placeholder-program-6',
+      'AMRI’s mobile outreach initiative brings wellness education, check-ins, and resource connections into community settings.',
+    nextStep: 'Ask About Community Outreach.',
+    slug: 'wellness-on-wheels',
   },
 
-  // Recovery & Support
+  // 4. Care Navigation & Support
   {
-    id: 'placeholder-7',
-    name: 'Placeholder Program 7',
-    category: 'Recovery & Support',
-    tagline: 'Mindful peer companionship for sustained recovery and transitions.',
-    audience: 'Individuals navigating addiction recovery and transitions',
-    delivery: 'Weekly peer support circles',
+    id: 'care-connections',
+    name: 'Care Connections™',
+    category: 'Care Navigation & Support',
+    tagline:
+      'Personalized navigation connecting you with culturally aligned providers and resources.',
+    audience: 'Individuals and families seeking help finding appropriate support.',
+    delivery: 'Individual navigation and follow-up, coordinated with AMRI.',
     purpose:
-      'Placeholder purpose describing non-judgmental peer recovery, mindfulness, and mutual accountability.',
-    nextStep: 'Confidential inquiry or direct drop-in',
-    slug: 'placeholder-program-7',
-    href: 'https://example.com/programs/placeholder-7',
-  },
-  {
-    id: 'placeholder-8',
-    name: 'Placeholder Program 8',
-    category: 'Recovery & Support',
-    tagline: 'A gentle circle honoring grief and loss with deep empathy.',
-    audience: 'Individuals experiencing grief, loss, or major life changes',
-    delivery: 'Bi-weekly guided group',
-    purpose:
-      'Placeholder purpose describing compassionate companioning through grief in a gentle community environment.',
-    nextStep: 'Connect with facilitator for group intake',
-    slug: 'placeholder-program-8',
+      'Helps people navigate culturally aligned mental health providers and community resources, making the next step toward care easier to understand.',
+    nextStep: 'Request Help Finding Support (direct inquiries to info@amindfulresource.org).',
+    slug: 'care-connections',
+    href: 'mailto:info@amindfulresource.org',
   },
 
-  // Training & Education
+  // 5. Training & Education
   {
-    id: 'placeholder-9',
-    name: 'Placeholder Program 9',
+    id: 'care-before-crisis',
+    name: 'Care Before Crisis™ — Mental Health 101 & Community Wellness Training',
     category: 'Training & Education',
-    tagline: 'Practical mental health first response skills for community members.',
-    audience: 'Community members, teachers, and frontline workers',
-    delivery: 'Certified bi-monthly training',
+    tagline: 'Practical education strengthening mental health awareness and reducing stigma.',
+    audience: 'Community members, employers, campuses, faith communities, and organizations.',
+    delivery:
+      'In-person, virtual, or partner-hosted workshops; session length depends on the selected format.',
     purpose:
-      'Placeholder purpose describing practical education on identifying, understanding, and responding to mental health signs.',
-    nextStep: 'Enroll in next accredited certification cohort',
-    slug: 'placeholder-program-9',
-    href: 'https://example.com/programs/placeholder-9',
+      'Practical, culturally responsive education that strengthens mental health awareness, reduces stigma, and helps people recognize distress and connect with support.',
+    nextStep: 'Request a Workshop through info@amindfulresource.org',
+    slug: 'care-before-crisis',
+    href: 'mailto:info@amindfulresource.org',
   },
   {
-    id: 'placeholder-10',
-    name: 'Placeholder Program 10',
+    id: 'real-talk-real-response',
+    name: 'Real Talk. Real Response.™',
     category: 'Training & Education',
-    tagline: 'Empowering community facilitators with trauma-informed mindfulness.',
-    audience: 'Educators, leaders, and community organizers',
-    delivery: 'Multi-week hybrid seminar',
+    tagline: 'Overdose awareness and response education equipped with life-saving skills.',
+    audience: 'Community members, caregivers, educators, workplaces, and organizations.',
+    delivery:
+      'Typically a 60–90-minute training coordinated with the host. Naloxone kits are subject to availability.',
     purpose:
-      'Placeholder purpose describing trauma-informed leadership, mindful workplace practices, and facilitation skills.',
-    nextStep: 'Submit application for upcoming training series',
-    slug: 'placeholder-program-10',
-    href: 'https://example.com/programs/placeholder-10',
+      'Overdose awareness and response education that equips participants to recognize an overdose and respond using naloxone and other immediate response skills.',
+    nextStep: 'Request Overdose Response Training or inquire about upcoming community sessions.',
+    slug: 'real-talk-real-response',
+  },
+  {
+    id: 'real-talk-real-support',
+    name: 'REAL TALK. REAL SUPPORT.™ — Community Wellness Champion Certification',
+    category: 'Training & Education',
+    tagline: 'Emotional first aid certification using AMRI’s CHECK IN™ framework.',
+    audience: 'Community leaders, volunteers, peer supporters, and people others turn to for help.',
+    delivery: 'Approximately one full day or two half days, coordinated with the host.',
+    purpose:
+      'Emotional first aid training that teaches supportive listening, safety awareness, resource connection, and navigation using AMRI’s CHECK IN™ framework.',
+    nextStep:
+      'Ask About Wellness Champion Training (AMRI program certificate, not professional licensure).',
+    slug: 'real-talk-real-support',
   },
 ]
