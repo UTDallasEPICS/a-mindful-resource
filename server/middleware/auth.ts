@@ -23,6 +23,11 @@ export default defineEventHandler(async (event) => {
 
   const pathname = event.path.split('?')[0] ?? event.path
 
+  // Allow visitors to view upcoming Eventbrite events without logging in.
+  if (event.method === 'GET' && pathname === '/api/eventbrite/events') {
+    return
+  }
+
   if (PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
     return
   }
