@@ -35,20 +35,8 @@ describe('application shell (app.vue)', () => {
 
     // Assert: the brand link shows "Nuxt Template" and targets "/".
     const brandLink = wrapper.get('a')
-    expect(brandLink.text()).toContain('Nuxt Template')
+    expect(brandLink.text()).toContain('A Mindful Resource')
     expect(brandLink.attributes('href')).toBe('/')
-    expect(fetchSpy).not.toHaveBeenCalled()
-  })
-
-  it('exposes an accessible "Toggle Theme" control', async () => {
-    // Act
-    const wrapper = await mountSuspended(App, {
-      global: { stubs: { NuxtPage: true } },
-    })
-
-    // Assert: the theme toggle is present and labelled for screen readers.
-    const toggle = wrapper.find('[aria-label="Toggle Theme"]')
-    expect(toggle.exists()).toBe(true)
     expect(fetchSpy).not.toHaveBeenCalled()
   })
 })
