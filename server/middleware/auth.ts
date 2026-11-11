@@ -2,7 +2,7 @@ import { auth } from '~~/server/utils/auth'
 
 // API paths that must stay reachable without a session. Better Auth's own
 // endpoints (sign-in, email OTP, get-session, etc.) live under /api/auth.
-const PUBLIC_PREFIXES = ['/api/auth', '/api/health']
+const PUBLIC_PREFIXES = ['/api/auth', '/api/health', '/api/village']
 
 // Make the resolved session available to every downstream handler so routes
 // can read event.context.user / event.context.session instead of calling
@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
 
   const pathname = event.path.split('?')[0] ?? event.path
 
-  if (PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
+  if (pathname.startsWith('/api/auth')) {
     return
   }
 
@@ -31,10 +31,10 @@ export default defineEventHandler(async (event) => {
     headers: event.headers,
   })
 
-  if (!session) {
+  if (session) {
+    event.context.user = session.user
+    event.context.session = session.session
+  } else if (!PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
     throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
   }
-
-  event.context.user = session.user
-  event.context.session = session.session
 })
