@@ -12,6 +12,11 @@ type EventItem = {
 
 export default defineEventHandler((): EventItem[] => {
   // Temporary mock data until AMRI provides Eventbrite credentials.
+  // Never serve the mock in production; visitors would see a fake event.
+  if (!import.meta.dev) {
+    return []
+  }
+
   return [
     {
       id: 'mock-bro-chill-1',
@@ -25,4 +30,4 @@ export default defineEventHandler((): EventItem[] => {
       // Replace with an actual Eventbrite registration URL.
     },
   ]
-}) 
+})

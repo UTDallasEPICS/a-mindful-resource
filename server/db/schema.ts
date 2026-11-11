@@ -118,9 +118,11 @@ export const events = sqliteTable('events', {
 
   title: text('title').notNull(),
   description: text('description'),
-  date: text('date').notNull(),
+  date: integer('date', { mode: 'timestamp' }).notNull(),
   location: text('location').notNull(),
-  status: text('status').notNull().default('Draft'),
+  status: text('status', { enum: ['Draft', 'Published'] })
+    .notNull()
+    .default('Draft'),
   eventbriteUrl: text('eventbriteUrl'),
 
   createdAt: integer('createdAt', { mode: 'timestamp' })

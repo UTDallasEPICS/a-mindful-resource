@@ -1,10 +1,12 @@
 import { authClient } from '../utils/auth-client'
 
 export default defineNuxtRouteMiddleware(async (to) => {
-  // Public pages that visitors can access without logging in
-  const publicPages = ['/events', '/events/bro-chill']
+  // Public sections that visitors can access without logging in.
+  // Matches the section root and everything under it, with or without a trailing slash.
+  const publicPrefixes = ['/events']
+  const path = to.path.replace(/\/+$/, '') || '/'
 
-  if (publicPages.includes(to.path)) {
+  if (publicPrefixes.some((p) => path === p || path.startsWith(p + '/'))) {
     return
   }
 

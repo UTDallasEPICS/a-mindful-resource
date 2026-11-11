@@ -152,19 +152,31 @@
               </div>
 
               <div class="mt-auto flex flex-wrap gap-3 pt-3">
-                <UButton to="/events/bro-chill" color="primary"> Learn More </UButton>
+                <UButton
+                  v-if="event.category === 'Bro Chill'"
+                  to="/events/bro-chill"
+                  color="primary"
+                >
+                  Learn More
+                </UButton>
 
                 <UButton
                   v-if="event.registrationUrl"
                   :to="event.registrationUrl"
                   target="_blank"
+                  rel="noopener noreferrer"
                   color="neutral"
                   variant="outline"
                 >
                   RSVP
                 </UButton>
 
-                <UButton v-else to="/events/bro-chill#rsvp" color="neutral" variant="outline">
+                <UButton
+                  v-else-if="event.category === 'Bro Chill'"
+                  to="/events/bro-chill#upcoming-circles"
+                  color="neutral"
+                  variant="outline"
+                >
                   RSVP
                 </UButton>
               </div>
@@ -212,7 +224,12 @@
               <p class="mt-3 text-sm leading-relaxed text-ink-muted">
                 Attend a free community gathering.
               </p>
-              <UButton to="/events/bro-chill#rsvp" color="primary" variant="outline" class="mt-5">
+              <UButton
+                to="/events/bro-chill#upcoming-circles"
+                color="primary"
+                variant="outline"
+                class="mt-5"
+              >
                 RSVP
               </UButton>
             </div>
@@ -225,7 +242,7 @@
                 Help lead conversations and support participants.
               </p>
               <UButton
-                to="/events/bro-chill#facilitate"
+                to="/events/bro-chill#get-involved"
                 color="primary"
                 variant="outline"
                 class="mt-5"

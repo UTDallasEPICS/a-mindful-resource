@@ -1,9 +1,10 @@
 import { db } from '../../utils/db'
 import { events } from '../../db/schema'
-import { eq } from 'drizzle-orm'
+import { and, asc, eq, gte } from 'drizzle-orm'
 
 export default defineEventHandler(async () => {
-  const publishedEvents = await db
+  // Only published events that have not happened yet, soonest first.
+  return db
     .select({
       id: events.id,
       title: events.title,
@@ -14,7 +15,6 @@ export default defineEventHandler(async () => {
       eventbriteUrl: events.eventbriteUrl,
     })
     .from(events)
-    .where(eq(events.status, 'Published'))
-
-  return publishedEvents
+    .where(and(eq(events.status, 'Published'), gte(events.date, new Date())))
+    .orderBy(asc(events.date))
 })
