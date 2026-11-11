@@ -2,13 +2,7 @@
   import ProgramDetailCard from './ProgramDetailCard.vue'
   import { usePrograms } from '../../composables/usePrograms'
 
-  const {
-    categories,
-    desktopSelectedId,
-    desktopSelectedProgram,
-    selectProgram,
-    getProgramsByCategory,
-  } = usePrograms()
+  const { categories, desktopSelectedProgram, selectProgram, getProgramsByCategory } = usePrograms()
 </script>
 
 <template>
@@ -17,22 +11,22 @@
       <!-- Left Column: Master List -->
       <nav class="col-span-5 space-y-6" aria-label="Programs navigation">
         <div v-for="category in categories" :key="category.slug" class="space-y-2">
-          <h3 class="text-xs font-semibold tracking-wider text-gold-deep uppercase">
+          <h2 class="text-xs font-semibold tracking-wider text-gold-deep uppercase">
             {{ category.name }}
-          </h3>
+          </h2>
           <div class="space-y-1">
             <button
               v-for="program in getProgramsByCategory(category.name)"
-              :key="program.id"
+              :key="program.slug"
               type="button"
-              :aria-current="desktopSelectedId === program.id ? 'true' : undefined"
+              :aria-current="desktopSelectedProgram?.slug === program.slug ? 'true' : undefined"
               class="w-full rounded-md px-3 py-2 text-left text-sm transition-colors"
               :class="
-                desktopSelectedId === program.id
+                desktopSelectedProgram?.slug === program.slug
                   ? 'bg-forest font-semibold text-paper shadow-xs'
                   : 'text-ink hover:bg-cream-light hover:text-forest-deep'
               "
-              @click="selectProgram(program.id)"
+              @click="selectProgram(program.slug)"
             >
               {{ program.name }}
             </button>

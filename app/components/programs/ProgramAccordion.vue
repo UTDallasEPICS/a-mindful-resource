@@ -2,7 +2,7 @@
   import ProgramDetailCard from './ProgramDetailCard.vue'
   import { usePrograms } from '../../composables/usePrograms'
 
-  const { categories, selectedId, selectedProgram, selectProgram, getProgramsByCategory } =
+  const { categories, selectedSlug, selectedProgram, selectProgram, getProgramsByCategory } =
     usePrograms()
 
   // Only one category section open at a time; starts collapsed on mobile (null)
@@ -30,12 +30,8 @@
     }
   }
 
-  function toggleProgram(id: string) {
-    if (selectedId.value === id) {
-      selectProgram(null)
-    } else {
-      selectProgram(id)
-    }
+  function toggleProgram(slug: string) {
+    selectProgram(selectedSlug.value === slug ? null : slug)
   }
 </script>
 
@@ -84,37 +80,29 @@
           <div class="space-y-3">
             <div
               v-for="program in getProgramsByCategory(category.name)"
-              :key="program.id"
+              :key="program.slug"
               class="space-y-3"
             >
               <button
                 type="button"
-                :id="`program-btn-${program.id}`"
-                :aria-expanded="selectedId === program.id ? 'true' : 'false'"
-                :aria-controls="`program-detail-${program.id}`"
+                :id="`program-btn-${program.slug}`"
+                :aria-expanded="selectedSlug === program.slug ? 'true' : 'false'"
+                :aria-controls="`program-detail-${program.slug}`"
                 class="flex w-full items-center justify-between rounded-md border p-3 text-left text-sm transition-colors"
                 :class="
-                  selectedId === program.id
+                  selectedSlug === program.slug
                     ? 'border-forest bg-forest font-semibold text-paper shadow-xs'
                     : 'border-line bg-cream text-ink hover:bg-cream-light hover:text-forest-deep'
                 "
-                @click="toggleProgram(program.id)"
+                @click="toggleProgram(program.slug)"
               >
                 <span>{{ program.name }}</span>
-                <UBadge
-                  v-if="program.delivery"
-                  :color="selectedId === program.id ? 'neutral' : 'primary'"
-                  variant="subtle"
-                  size="xs"
-                >
-                  {{ program.delivery }}
-                </UBadge>
               </button>
 
               <!-- Inline Program Detail Card directly below program button -->
               <div
-                v-if="selectedId === program.id"
-                :id="`program-detail-${program.id}`"
+                v-if="selectedSlug === program.slug"
+                :id="`program-detail-${program.slug}`"
                 class="pt-1"
               >
                 <ProgramDetailCard :program="program" />

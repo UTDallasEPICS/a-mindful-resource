@@ -34,7 +34,6 @@ export const PROGRAM_CATEGORIES = [
 export type ProgramCategory = (typeof PROGRAM_CATEGORIES)[number]['name']
 
 export interface Program {
-  id: string
   name: string
   category: ProgramCategory
   tagline: string
@@ -56,14 +55,13 @@ export const programsPageContent = {
 export const programs: Program[] = [
   // 1. Men's Wellness
   {
-    id: 'bro-chill',
     name: 'Bro Chill™',
     category: "Men's Wellness",
     tagline:
       'A culturally responsive wellness space for honest conversation and community connection.',
     audience: 'Men, with particular attention to Black men and men facing barriers to support.',
     delivery:
-      'Facilitated community gatherings and partner-hosted circles. Institutional offerings can include a six-week series; display community dates separately when confirmed.',
+      'Facilitated community gatherings and partner-hosted circles. Schools and organizations can also book a six-week series.',
     purpose:
       'A culturally responsive wellness space where men can have honest conversations, build community, practice coping skills, and connect with additional support.',
     nextStep: 'Explore Bro Chill at brochill.org or contact AMRI about hosting a circle.',
@@ -73,7 +71,6 @@ export const programs: Program[] = [
 
   // 2. Youth & Families
   {
-    id: 'real-talk-real-skills',
     name: 'Real Talk. Real Skills.™ — Youth Emotional First Aid',
     category: 'Youth & Families',
     tagline: 'Youth emotional first aid helping young people manage stress and support friends.',
@@ -86,13 +83,12 @@ export const programs: Program[] = [
     slug: 'real-talk-real-skills',
   },
   {
-    id: 'bro-rise',
     name: 'BRO RISE™',
     category: 'Youth & Families',
     tagline: 'Mentorship and leadership development for boys and young men.',
     audience: 'Boys and young men.',
     delivery:
-      'Partner-coordinated cohorts; format and enrollment dates should be confirmed for each offering.',
+      'Cohorts run with school and community partners. Contact us for format and enrollment dates.',
     purpose:
       'Builds emotional intelligence, leadership, healthy relationships, and a sense of belonging through mentorship and practical experiences.',
     nextStep: 'Ask About a Cohort or inquire about a school or community partnership.',
@@ -101,7 +97,6 @@ export const programs: Program[] = [
 
   // 3. Community Wellness
   {
-    id: 'how-u-feel',
     name: 'How U Feel™',
     category: 'Community Wellness',
     tagline: 'A digital wellness check-in tool to explore how you feel and find next steps.',
@@ -115,13 +110,12 @@ export const programs: Program[] = [
     href: 'https://howufeel.org',
   },
   {
-    id: 'wellness-on-wheels',
     name: 'Wellness on Wheels™',
     category: 'Community Wellness',
     tagline: 'Mobile wellness outreach bringing education, check-ins, and care to communities.',
     audience: 'Neighborhoods and communities facing barriers to accessing wellness resources.',
     delivery:
-      'Mobile, partner-based outreach. Public scheduling and booking availability pending confirmation.',
+      'Mobile outreach at partner sites and community events. Contact us to request a visit.',
     purpose:
       'AMRI’s mobile outreach initiative brings wellness education, check-ins, and resource connections into community settings.',
     nextStep: 'Ask About Community Outreach.',
@@ -130,7 +124,6 @@ export const programs: Program[] = [
 
   // 4. Care Navigation & Support
   {
-    id: 'care-connections',
     name: 'Care Connections™',
     category: 'Care Navigation & Support',
     tagline:
@@ -139,14 +132,12 @@ export const programs: Program[] = [
     delivery: 'Individual navigation and follow-up, coordinated with AMRI.',
     purpose:
       'Helps people navigate culturally aligned mental health providers and community resources, making the next step toward care easier to understand.',
-    nextStep: 'Request Help Finding Support (direct inquiries to info@amindfulresource.org).',
+    nextStep: 'Request Help Finding Support.',
     slug: 'care-connections',
-    href: 'mailto:info@amindfulresource.org',
   },
 
   // 5. Training & Education
   {
-    id: 'care-before-crisis',
     name: 'Care Before Crisis™ — Mental Health 101 & Community Wellness Training',
     category: 'Training & Education',
     tagline: 'Practical education strengthening mental health awareness and reducing stigma.',
@@ -155,12 +146,10 @@ export const programs: Program[] = [
       'In-person, virtual, or partner-hosted workshops; session length depends on the selected format.',
     purpose:
       'Practical, culturally responsive education that strengthens mental health awareness, reduces stigma, and helps people recognize distress and connect with support.',
-    nextStep: 'Request a Workshop through info@amindfulresource.org',
+    nextStep: 'Request a Workshop.',
     slug: 'care-before-crisis',
-    href: 'mailto:info@amindfulresource.org',
   },
   {
-    id: 'real-talk-real-response',
     name: 'Real Talk. Real Response.™',
     category: 'Training & Education',
     tagline: 'Overdose awareness and response education equipped with life-saving skills.',
@@ -173,7 +162,6 @@ export const programs: Program[] = [
     slug: 'real-talk-real-response',
   },
   {
-    id: 'real-talk-real-support',
     name: 'REAL TALK. REAL SUPPORT.™ — Community Wellness Champion Certification',
     category: 'Training & Education',
     tagline: 'Emotional first aid certification using AMRI’s CHECK IN™ framework.',

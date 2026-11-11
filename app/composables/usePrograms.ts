@@ -5,70 +5,42 @@ export function usePrograms() {
   const route = useRoute()
   const router = useRouter()
 
-  // Shared selection state, initialized from ?program=<slug> if present and valid
-  const selectedId = useState<string | null>('programs_selected_id', () => {
-    const slug = typeof route.query.program === 'string' ? route.query.program : undefined
-    const match = slug ? programs.find((p) => p.slug === slug) : null
-    return match ? match.id : null
+  // The URL (?program=<slug>) is the only source of truth for the selection.
+  // Deriving it means back/forward, deep links, and returning to /programs
+  // without a query always show the right state, and no watcher is needed.
+  const selectedSlug = computed<string | null>(() => {
+    const slug = route.query.program
+    return typeof slug === 'string' && programs.some((p) => p.slug === slug) ? slug : null
   })
 
-  // Watch URL query to keep selection in sync with browser navigation (back/forward)
-  watch(
-    () => route.query.program,
-    (newSlug) => {
-      if (typeof newSlug === 'string') {
-        const match = programs.find((p) => p.slug === newSlug)
-        selectedId.value = match ? match.id : null
-      } else {
-        selectedId.value = null
-      }
-    }
+  const selectedProgram = computed<Program | null>(
+    () => programs.find((p) => p.slug === selectedSlug.value) ?? null
   )
 
-  function selectProgram(id: string | null) {
-    selectedId.value = id
-    if (id) {
-      const match = programs.find((p) => p.id === id)
-      if (match) {
-        router.replace({
-          query: {
-            ...route.query,
-            program: match.slug,
-          },
-        })
-      }
+  // Desktop always shows a program, falling back to the first one.
+  const desktopSelectedProgram = computed<Program | undefined>(
+    () => selectedProgram.value ?? programs[0]
+  )
+
+  function selectProgram(slug: string | null) {
+    const query = { ...route.query }
+    if (slug) {
+      query.program = slug
     } else {
-      const nextQuery = { ...route.query }
-      delete nextQuery.program
-      router.replace({ query: nextQuery })
+      delete query.program
     }
+    router.replace({ query })
   }
 
   function getProgramsByCategory(categoryName: ProgramCategory): Program[] {
     return programs.filter((p) => p.category === categoryName)
   }
 
-  const selectedProgram = computed(() => {
-    if (!selectedId.value) return null
-    return programs.find((p) => p.id === selectedId.value) || null
-  })
-
-  // Desktop always displays an active program, falling back to the first program if none is specified
-  const desktopSelectedProgram = computed(() => {
-    return selectedProgram.value || programs[0]
-  })
-
-  const desktopSelectedId = computed(() => {
-    return selectedId.value || programs[0]?.id || ''
-  })
-
   return {
     categories: PROGRAM_CATEGORIES,
-    programs,
-    selectedId,
+    selectedSlug,
     selectedProgram,
     desktopSelectedProgram,
-    desktopSelectedId,
     selectProgram,
     getProgramsByCategory,
   }
