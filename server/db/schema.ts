@@ -182,3 +182,31 @@ export const selectVillageMemberSchema = createSelectSchema(villageMember)
 export const insertVillageMemberSchema = createInsertSchema(villageMember)
 export const selectVillageMemberRoleSchema = createSelectSchema(villageMemberRole)
 export const insertVillageMemberRoleSchema = createInsertSchema(villageMemberRole)
+
+// Events table
+export const events = sqliteTable('events', {
+  id: text('id')
+    .primaryKey()
+    .$defaultFn(() => crypto.randomUUID()),
+
+  title: text('title').notNull(),
+  description: text('description'),
+  date: integer('date', { mode: 'timestamp' }).notNull(),
+  location: text('location').notNull(),
+  status: text('status', { enum: ['Draft', 'Published'] })
+    .notNull()
+    .default('Draft'),
+  eventbriteUrl: text('eventbriteUrl'),
+
+  createdAt: integer('createdAt', { mode: 'timestamp' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+
+  updatedAt: integer('updatedAt', { mode: 'timestamp' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+})
+
+// Event validation schemas
+export const selectEventSchema = createSelectSchema(events)
+export const insertEventSchema = createInsertSchema(events)

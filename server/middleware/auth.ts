@@ -4,6 +4,9 @@ import { auth } from '~~/server/utils/auth'
 // endpoints (sign-in, email OTP, get-session, etc.) live under /api/auth.
 const PUBLIC_PREFIXES = ['/api/auth', '/api/health', '/api/village']
 
+// Read-only API paths that public pages (e.g. /events) call without a session.
+const PUBLIC_GET_PATHS = ['/api/events', '/api/eventbrite/events']
+
 // Make the resolved session available to every downstream handler so routes
 // can read event.context.user / event.context.session instead of calling
 // auth.api.getSession() themselves.
@@ -34,7 +37,15 @@ export default defineEventHandler(async (event) => {
   if (session) {
     event.context.user = session.user
     event.context.session = session.session
-  } else if (!PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+  } else {
+    const isPublicGet =
+      event.method === 'GET' && PUBLIC_GET_PATHS.includes(pathname.replace(/\/+$/, ''))
+    const isPublicPrefix = PUBLIC_PREFIXES.some(
+      (p) => pathname === p || pathname.startsWith(p + '/')
+    )
+
+    if (!isPublicGet && !isPublicPrefix) {
+      throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+    }
   }
 })
