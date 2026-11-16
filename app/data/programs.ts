@@ -1,35 +1,38 @@
-export const PROGRAM_CATEGORIES = [
-  {
+export const CATEGORIES = {
+  mensWellness: {
     name: "Men's Wellness",
     slug: 'mens-wellness',
     description:
       'Dedicated spaces and supportive circles for men to focus on mental health, personal growth, and authentic peer connection.',
   },
-  {
+  youthFamilies: {
     name: 'Youth & Families',
     slug: 'youth-families',
     description:
       'Empowering children, teens, and caregivers with emotional literacy, resilience practices, and collaborative support.',
   },
-  {
+  communityWellness: {
     name: 'Community Wellness',
     slug: 'community-wellness',
     description:
       'Accessible community initiatives, digital wellness tools, and mobile outreach welcoming all community members.',
   },
-  {
+  careNavigation: {
     name: 'Care Navigation & Support',
     slug: 'care-navigation-support',
     description:
       'Helping individuals and families navigate culturally aligned mental health providers and community resources.',
   },
-  {
+  trainingEducation: {
     name: 'Training & Education',
     slug: 'training-education',
     description:
       'Practical, culturally responsive education, workshops, and certifications in mental health and community wellness.',
   },
-] as const
+} as const
+
+export type CategoryKey = keyof typeof CATEGORIES
+export const PROGRAM_CATEGORIES = Object.values(CATEGORIES)
 
 export type ProgramCategory = (typeof PROGRAM_CATEGORIES)[number]['name']
 
@@ -45,6 +48,10 @@ export interface Program {
   href?: string
 }
 
+interface ProgramDefinition extends Omit<Program, 'category'> {
+  categoryKey: CategoryKey
+}
+
 export const programsPageContent = {
   title: 'Programs',
   eyebrow: 'Our Offerings',
@@ -52,11 +59,11 @@ export const programsPageContent = {
     'A Mindful Resource Inc. creates trusted pathways to mental wellness through community connection, practical education, early awareness, and care navigation. Our Care Before Crisis™ approach meets people where they live, learn, work, and gather. Not therapy first. Trust first.',
 }
 
-export const programs: Program[] = [
+const rawPrograms: ProgramDefinition[] = [
   // 1. Men's Wellness
   {
     name: 'Bro Chill™',
-    category: "Men's Wellness",
+    categoryKey: 'mensWellness',
     tagline:
       'A culturally responsive wellness space for honest conversation and community connection.',
     audience: 'Men, with particular attention to Black men and men facing barriers to support.',
@@ -72,7 +79,7 @@ export const programs: Program[] = [
   // 2. Youth & Families
   {
     name: 'Real Talk. Real Skills.™ — Youth Emotional First Aid',
-    category: 'Youth & Families',
+    categoryKey: 'youthFamilies',
     tagline: 'Youth emotional first aid helping young people manage stress and support friends.',
     audience: 'Middle and high school students, with family and school involvement.',
     delivery:
@@ -84,7 +91,7 @@ export const programs: Program[] = [
   },
   {
     name: 'BRO RISE™',
-    category: 'Youth & Families',
+    categoryKey: 'youthFamilies',
     tagline: 'Mentorship and leadership development for boys and young men.',
     audience: 'Boys and young men.',
     delivery:
@@ -98,7 +105,7 @@ export const programs: Program[] = [
   // 3. Community Wellness
   {
     name: 'How U Feel™',
-    category: 'Community Wellness',
+    categoryKey: 'communityWellness',
     tagline: 'A digital wellness check-in tool to explore how you feel and find next steps.',
     audience: 'People seeking a starting point for understanding their emotional well-being.',
     delivery:
@@ -111,7 +118,7 @@ export const programs: Program[] = [
   },
   {
     name: 'Wellness on Wheels™',
-    category: 'Community Wellness',
+    categoryKey: 'communityWellness',
     tagline: 'Mobile wellness outreach bringing education, check-ins, and care to communities.',
     audience: 'Neighborhoods and communities facing barriers to accessing wellness resources.',
     delivery:
@@ -125,7 +132,7 @@ export const programs: Program[] = [
   // 4. Care Navigation & Support
   {
     name: 'Care Connections™',
-    category: 'Care Navigation & Support',
+    categoryKey: 'careNavigation',
     tagline:
       'Personalized navigation connecting you with culturally aligned providers and resources.',
     audience: 'Individuals and families seeking help finding appropriate support.',
@@ -139,7 +146,7 @@ export const programs: Program[] = [
   // 5. Training & Education
   {
     name: 'Care Before Crisis™ — Mental Health 101 & Community Wellness Training',
-    category: 'Training & Education',
+    categoryKey: 'trainingEducation',
     tagline: 'Practical education strengthening mental health awareness and reducing stigma.',
     audience: 'Community members, employers, campuses, faith communities, and organizations.',
     delivery:
@@ -151,7 +158,7 @@ export const programs: Program[] = [
   },
   {
     name: 'Real Talk. Real Response.™',
-    category: 'Training & Education',
+    categoryKey: 'trainingEducation',
     tagline: 'Overdose awareness and response education equipped with life-saving skills.',
     audience: 'Community members, caregivers, educators, workplaces, and organizations.',
     delivery:
@@ -163,7 +170,7 @@ export const programs: Program[] = [
   },
   {
     name: 'REAL TALK. REAL SUPPORT.™ — Community Wellness Champion Certification',
-    category: 'Training & Education',
+    categoryKey: 'trainingEducation',
     tagline: 'Emotional first aid certification using AMRI’s CHECK IN™ framework.',
     audience: 'Community leaders, volunteers, peer supporters, and people others turn to for help.',
     delivery: 'Approximately one full day or two half days, coordinated with the host.',
@@ -174,3 +181,11 @@ export const programs: Program[] = [
     slug: 'real-talk-real-support',
   },
 ]
+
+export const programs: Program[] = rawPrograms.map((p) => {
+  const { categoryKey, ...rest } = p
+  return {
+    ...rest,
+    category: CATEGORIES[categoryKey].name,
+  }
+})
