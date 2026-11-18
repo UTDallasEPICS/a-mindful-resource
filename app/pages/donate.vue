@@ -4,7 +4,6 @@
     <UPageHero
       title="Change the story. Fund the change."
       description="Mental wellness should not depend on your ZIP code, your income, or whether you know where to turn. Your gift helps A Mindful Resource Inc. bring trusted mental health education, community connection, and pathways to care into the neighborhoods that need them."
-      headline="Care Before Crisis™ · A Mindful Resource Inc."
       :links="heroLinks"
       orientation="horizontal"
     >
