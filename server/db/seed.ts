@@ -209,6 +209,8 @@ async function main() {
         website: m.website,
         availability: m.availability,
         applicationStatus: 'approved',
+        reviewedBy: adminUserId,
+        reviewedAt: new Date(),
       })
       console.log(`  → village_member created`)
     } else {
