@@ -2,7 +2,7 @@ import { auth } from '~~/server/utils/auth'
 
 // API paths that must stay reachable without a session. Better Auth's own
 // endpoints (sign-in, email OTP, get-session, etc.) live under /api/auth.
-const PUBLIC_PREFIXES = ['/api/auth', '/api/health']
+const PUBLIC_PREFIXES = ['/api/auth', '/api/health', '/api/village']
 
 // Read-only API paths that public pages (e.g. /events) call without a session.
 const PUBLIC_GET_PATHS = ['/api/events', '/api/eventbrite/events']
@@ -26,11 +26,7 @@ export default defineEventHandler(async (event) => {
 
   const pathname = event.path.split('?')[0] ?? event.path
 
-  if (event.method === 'GET' && PUBLIC_GET_PATHS.includes(pathname.replace(/\/+$/, ''))) {
-    return
-  }
-
-  if (PUBLIC_PREFIXES.some((p) => pathname === p || pathname.startsWith(p + '/'))) {
+  if (pathname.startsWith('/api/auth')) {
     return
   }
 
@@ -38,10 +34,18 @@ export default defineEventHandler(async (event) => {
     headers: event.headers,
   })
 
-  if (!session) {
-    throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
-  }
+  if (session) {
+    event.context.user = session.user
+    event.context.session = session.session
+  } else {
+    const isPublicGet =
+      event.method === 'GET' && PUBLIC_GET_PATHS.includes(pathname.replace(/\/+$/, ''))
+    const isPublicPrefix = PUBLIC_PREFIXES.some(
+      (p) => pathname === p || pathname.startsWith(p + '/')
+    )
 
-  event.context.user = session.user
-  event.context.session = session.session
+    if (!isPublicGet && !isPublicPrefix) {
+      throw createError({ statusCode: 401, statusMessage: 'Unauthorized' })
+    }
+  }
 })

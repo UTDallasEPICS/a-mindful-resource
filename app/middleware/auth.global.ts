@@ -1,5 +1,18 @@
 import { authClient } from '../utils/auth-client'
 
+// pages that don't require a session
+const PUBLIC_PAGES = [
+  '/',
+  '/auth',
+  '/village',
+  '/the-village',
+  '/about',
+  '/programs',
+  '/events',
+  '/resources',
+  '/donate',
+]
+
 export default defineNuxtRouteMiddleware(async (to) => {
   // Public sections that visitors can access without logging in.
   // Matches the section root and everything under it, with or without a trailing slash.
@@ -12,13 +25,21 @@ export default defineNuxtRouteMiddleware(async (to) => {
 
   const { data: session } = await authClient.useSession(useFetch)
 
+  const isPublic = PUBLIC_PAGES.some(
+    (p) => to.path === p || to.path.startsWith(`${p}/`)
+  )
+
   if (session.value) {
     if (to.path === '/auth') {
-      return navigateTo('/')
+      const redirect = (to.query.redirect as string) || '/'
+      return navigateTo(redirect)
     }
   } else {
-    if (to.path !== '/auth') {
-      return navigateTo('/auth')
+    if (!isPublic) {
+      return navigateTo({
+        path: '/auth',
+        query: to.path !== '/' ? { redirect: to.fullPath } : undefined,
+      })
     }
   }
 })
