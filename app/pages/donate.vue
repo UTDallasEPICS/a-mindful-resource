@@ -43,7 +43,7 @@
               orientation="horizontal"
               variant="table"
               :items="frequencies"
-              :ui="{ item: 'flex-1 justify-center' }"
+              :ui="{ item: 'flex-1' }"
             />
           </UFormField>
 
@@ -60,7 +60,9 @@
               orientation="horizontal"
               variant="table"
               :items="amountPresets"
-              :ui="{ item: 'flex-1 justify-center' }"
+              :ui="{
+                item: 'flex-1 min-w-0 px-2 sm:px-3 py-2 sm:py-3.5 text-xs sm:text-sm',
+              }"
             />
           </UFormField>
 
