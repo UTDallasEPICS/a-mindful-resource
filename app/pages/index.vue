@@ -13,10 +13,6 @@
     await navigateTo('/auth', { external: true })
   }
 
-  function getImageLink(user: { image: boolean; id: string }) {
-    return user.image ? 'api/users/' + user.id + '/profile' : undefined
-  }
-
   function handleImageUpload(event: Event) {
     const target = event.target as HTMLInputElement
     const files = target.files as FileList
@@ -154,7 +150,7 @@
         <div v-for="i in 3" :key="i" class="flex items-center justify-between py-2">
           <div class="flex w-full items-center gap-3">
             <USkeleton class="h-10 w-10 rounded-full" />
-            <div class="w-full max-w-[200px] space-y-2">
+            <div class="max-w-50px w-full space-y-2">
               <USkeleton class="h-4 w-full" />
               <USkeleton class="h-3 w-2/3" />
             </div>
@@ -179,9 +175,7 @@
           class="flex items-center justify-between py-4 first:pt-0 last:pb-0"
         >
           <div class="flex items-center gap-3">
-            <UAvatar :src="getImageLink(user)" :alt="user.name" size="md" :as="{ img: 'img' }" />
             <div>
-              <p class="font-medium text-gray-900 dark:text-white">{{ user.name }}</p>
               <p class="text-sm text-gray-500 dark:text-gray-400">{{ user.email }}</p>
             </div>
           </div>

@@ -1,16 +1,3 @@
-<script setup lang="ts">
-  const colorMode = useColorMode()
-
-  const isDark = computed({
-    get() {
-      return colorMode.value === 'dark'
-    },
-    set() {
-      colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'
-    },
-  })
-</script>
-
 <template>
   <UApp>
     <div
@@ -24,16 +11,6 @@
             <UIcon name="i-heroicons-cube-transparent" class="text-primary-500 h-8 w-8" />
             <span>Nuxt Template</span>
           </NuxtLink>
-
-          <div class="flex items-center gap-2">
-            <UButton
-              :icon="isDark ? 'i-heroicons-moon-20-solid' : 'i-heroicons-sun-20-solid'"
-              color="neutral"
-              variant="ghost"
-              @click="isDark = !isDark"
-              aria-label="Toggle Theme"
-            />
-          </div>
         </UContainer>
       </header>
 

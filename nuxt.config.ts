@@ -3,13 +3,23 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: true },
   modules: ['@nuxt/ui', '@nuxt/image', '@nuxt/eslint'],
-  css: ['./assets/css/main.css'],
+  css: ['./assets/css/main.css', './assets/css/resource_page.css'],
   // Prettier owns formatting; ESLint handles logic only (no stylistic rules).
   eslint: {
     config: {
       stylistic: false,
     },
   },
+
+  routeRules: {
+    '/': { redirect: '/home' },
+    '/resources': { redirect: '/resource' },
+  },
+
+  ui: {
+    colorMode: false,
+  },
+
   // Surface TypeScript errors in the terminal during `nuxt dev`. Not during
   // `nuxt build`: the in-build vue-tsc runs in a clean environment where it
   // can't resolve auto-imports/module types and fails the Docker deploy. CI

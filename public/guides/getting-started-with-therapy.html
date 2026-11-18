@@ -1,0 +1,596 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>A Guide for First-Timers &amp; the Therapy-Curious | A Mindful Resource</title>
+  <meta name="description" content="What therapy really is, how to find the right person, and how to make it affordable — demystified. You don’t have to be in crisis to deserve support. You just have to be human.">
+  <style>
+    :root {
+      --forest: #21483b;
+      --forest-deep: #193a30;
+      --sage-light: #e3ebe6;
+      --gold: #c89545;
+      --gold-light: #dfb56e;
+      --gold-deep: #866229;
+      --cream: #f4f0e8;
+      --cream-light: #fcfaf5;
+      --ink: #1e352d;
+      --ink-muted: #52665c;
+      --line: #d4dbd6;
+      --paper: #fcfaf5;
+      --mist: #d7e0da;
+      --mist-muted: #aebdb5;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      background: var(--cream);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    h1, h2, h3 {
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 400;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    a {
+      color: var(--forest);
+      text-decoration: none;
+      transition: color 0.15s ease;
+    }
+
+    a:hover {
+      color: var(--gold-deep);
+    }
+
+    /* WIDE DESKTOP CONTAINER */
+    .container {
+      width: 100%;
+      max-width: 1680px;
+      margin-left: auto;
+      margin-right: auto;
+      padding-left: clamp(24px, 4vw, 64px);
+      padding-right: clamp(24px, 4vw, 64px);
+    }
+
+    /* HERO BANNER */
+    .hero {
+      width: 100%;
+      background: linear-gradient(180deg, var(--forest-deep) 0%, var(--forest) 100%);
+      color: var(--mist);
+      padding: 40px 0 52px;
+      border-bottom: 4px solid var(--gold);
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--mist-muted);
+      font-size: 14px;
+      font-weight: 500;
+      padding: 6px 14px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .back:hover {
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.14);
+    }
+
+    .hero-body {
+      max-width: 1000px;
+    }
+
+    .eyebrow {
+      color: var(--gold-light);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin: 0 0 10px;
+    }
+
+    .hero h1 {
+      color: var(--paper);
+      font-size: clamp(32px, 4vw, 52px);
+      letter-spacing: -0.01em;
+    }
+
+    .bar {
+      width: 60px;
+      height: 3px;
+      border-radius: 4px;
+      background: var(--gold);
+      margin: 18px 0;
+    }
+
+    .headline {
+      font-family: Georgia, serif;
+      font-style: italic;
+      color: var(--gold-light);
+      font-size: clamp(18px, 2.2vw, 24px);
+      margin: 0 0 10px;
+    }
+
+    .intro {
+      margin: 0;
+      font-size: 16.5px;
+      color: var(--mist);
+      line-height: 1.6;
+    }
+
+    /* CRISIS BANNER (Positioned underneath hero banner) */
+    .crisis-banner {
+      background: #b91c1c;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #ffffff;
+      text-align: center;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+    }
+
+    .crisis-inner {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .crisis-banner svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+    }
+
+    .crisis-banner a {
+      color: #ffffff;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .crisis-banner a:hover {
+      color: #fee2e2;
+    }
+
+    /* MAIN EDITORIAL GRID */
+    main {
+      padding-top: 52px;
+      padding-bottom: 72px;
+    }
+
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      column-gap: clamp(40px, 4.5vw, 72px);
+      row-gap: 44px;
+      margin-bottom: 52px;
+    }
+
+    .section {
+      padding-top: 24px;
+      border-top: 2px solid var(--line);
+    }
+
+    .section.accent {
+      border-top-color: var(--gold);
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 14px;
+    }
+
+    .step-num {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      color: var(--paper);
+      background: var(--forest);
+      padding: 3px 10px;
+      border-radius: 6px;
+      flex-shrink: 0;
+    }
+
+    .section.accent .step-num {
+      background: var(--gold-deep);
+    }
+
+    .section h2 {
+      color: var(--forest-deep);
+      font-size: clamp(22px, 2.3vw, 26px);
+    }
+
+    .section p {
+      margin: 0 0 14px;
+      font-size: 15.5px;
+      color: var(--ink);
+    }
+
+    .section p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* SCANNABLE BULLET POINTS */
+    ul.points {
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    ul.points li {
+      position: relative;
+      padding-left: 22px;
+      margin: 12px 0;
+      font-size: 15.5px;
+    }
+
+    ul.points li:first-child {
+      margin-top: 0;
+    }
+
+    ul.points li::before {
+      content: "";
+      position: absolute;
+      left: 2px;
+      top: 0.65em;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    ul.points strong {
+      color: var(--forest-deep);
+    }
+
+    /* TRUSTED RESOURCES DIRECTORY */
+    .directory-section {
+      padding-top: 32px;
+      border-top: 2px solid var(--forest);
+      margin-bottom: 48px;
+    }
+
+    .res-intro {
+      color: var(--ink-muted);
+      font-size: 16px;
+      margin: 0 0 24px;
+    }
+
+    .res {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .res li {
+      background: var(--cream-light);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      transition: border-color 0.15s ease, transform 0.15s ease;
+    }
+
+    .res li:hover {
+      border-color: var(--gold);
+      transform: translateY(-2px);
+    }
+
+    .res b {
+      color: var(--forest-deep);
+      font-size: 15px;
+      margin-bottom: 4px;
+    }
+
+    .res span {
+      display: block;
+      color: var(--ink-muted);
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .res a {
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    /* CLOSING BANNER */
+    .closing {
+      background: var(--forest);
+      color: var(--mist);
+      border-radius: 16px;
+      padding: 40px 36px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      margin-bottom: 24px;
+    }
+
+    .closing-text {
+      max-width: 900px;
+    }
+
+    .closing h2 {
+      color: var(--paper);
+      font-size: clamp(24px, 2.8vw, 30px);
+      margin-bottom: 8px;
+    }
+
+    .closing p {
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.65;
+    }
+
+    .btn {
+      display: inline-block;
+      flex-shrink: 0;
+      background: var(--gold);
+      color: var(--forest-deep);
+      font-weight: 700;
+      font-size: 15px;
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 10px;
+      transition: background 0.15s ease, transform 0.15s ease;
+    }
+
+    .btn:hover {
+      background: var(--gold-light);
+      color: var(--forest-deep);
+      transform: translateY(-1px);
+    }
+
+    .note {
+      font-size: 13px;
+      color: var(--ink-muted);
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    /* RESPONSIVE BREAKPOINTS */
+    @media (max-width: 1400px) {
+      .res {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 1024px) {
+      .res {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      .editorial-grid {
+        grid-template-columns: 1fr;
+        row-gap: 32px;
+      }
+      .closing {
+        flex-direction: column;
+        text-align: center;
+        padding: 32px 24px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .res {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container">
+      <div class="hero-top">
+        <a class="back" href="/resource">&larr; Back to all guides</a>
+      </div>
+      <div class="hero-body">
+        <p class="eyebrow">A Mindful Resource Inc. &bull; Care Before Crisis™</p>
+        <h1>A Guide for First-Timers &amp; the Therapy-Curious</h1>
+        <div class="bar"></div>
+        <p class="headline">Therapy Isn’t Weakness. It’s Maintenance for Your Mind.</p>
+        <p class="intro">What therapy really is, how to find the right person, and how to make it affordable &mdash; demystified. You don’t have to be in crisis to deserve support. You just have to be human.</p>
+      </div>
+    </div>
+  </header>
+
+  <!-- CRISIS BANNER -->
+  <div class="crisis-banner">
+    <div class="crisis-inner">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+        stroke-width="2"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+        />
+      </svg>
+      <span>In crisis?</span>
+      <a href="tel:988">Call or text 988</a>
+      <span>|</span>
+      <a href="sms:741741?body=HOME">Text HOME to 741741</a>
+    </div>
+  </div>
+
+  <main class="container">
+
+    <div class="editorial-grid">
+
+      <section class="section">
+        <div class="section-header">
+          <span class="step-num">01</span>
+          <h2>Let’s clear the air</h2>
+        </div>
+        <p>A lot of us grew up hearing “what happens in this house stays in this house,” or that therapy is for white folks, or for people who are “crazy.” None of that is true.</p>
+        <p>Therapy is for anyone carrying something &mdash; grief, stress, anxiety, old wounds, or just the weight of being strong for everyone else. <strong>Going isn’t weakness. It’s wisdom.</strong></p>
+      </section>
+
+      <section class="section accent">
+        <div class="section-header">
+          <span class="step-num">02</span>
+          <h2>What therapy actually is (and isn’t)</h2>
+        </div>
+        <ul class="points">
+          <li><strong>What it is:</strong> A trained, confidential professional who helps you understand yourself, cope, and grow.</li>
+          <li><strong>What it isn’t:</strong> Not someone telling you what to do, judging you, or analyzing you on a couch.</li>
+          <li><strong>Not just for crisis:</strong> Many people go to maintain their mental health &mdash; like a checkup for the mind.</li>
+          <li><strong>Not forever:</strong> Some go for a season, some longer. You set the pace.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <span class="step-num">03</span>
+          <h2>Finding the right therapist</h2>
+        </div>
+        <ul class="points">
+          <li><strong>Look for culturally-responsive care:</strong> A therapist who shares or respects your background &mdash; who you don’t have to teach about racism or your community &mdash; can change everything.</li>
+          <li><strong>“Interview” them:</strong> It’s okay to ask about their experience, approach, and whether they’ve worked with people like you.</li>
+          <li><strong>The first fit isn’t final:</strong> If it’s not a fit after a few sessions, it’s okay to switch. That’s not failure &mdash; it’s self-respect.</li>
+        </ul>
+      </section>
+
+      <section class="section accent">
+        <div class="section-header">
+          <span class="step-num">04</span>
+          <h2>Making it affordable</h2>
+        </div>
+        <ul class="points">
+          <li><strong>Insurance:</strong> Many plans cover therapy &mdash; call the number on your card and ask about “behavioral health.”</li>
+          <li><strong>Sliding scale &amp; Open Path:</strong> Open Path Collective offers sessions around $30–$80 when you don’t have good coverage.</li>
+          <li><strong>Your EAP:</strong> If you work, you may have free sessions through an Employee Assistance Program. Ask HR.</li>
+          <li><strong>Community clinics &amp; training programs:</strong> Low-cost care exists in most areas.</li>
+          <li><strong>Group therapy:</strong> Often more affordable &mdash; and healing happens in community.</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-header">
+          <span class="step-num">05</span>
+          <h2>What to expect &amp; how to start</h2>
+        </div>
+        <ul class="points">
+          <li><strong>Nerves are normal:</strong> Most people feel nervous, especially the first time.</li>
+          <li><strong>You set the pace:</strong> You never have to share more than you’re ready to.</li>
+          <li><strong>Confidentiality:</strong> What you say stays private, with rare exceptions for safety (like if you’re in danger).</li>
+          <li><strong>Start small:</strong> A first phone call or a single session is a real, brave beginning.</li>
+        </ul>
+      </section>
+
+      <section class="section accent">
+        <div class="section-header">
+          <span class="step-num">06</span>
+          <h2>If you’re not ready yet</h2>
+        </div>
+        <p>That’s okay too. You can still take a step: talk to a trusted person, join a support group, lean on your faith community, or call or text <a href="tel:988">988</a> if you’re struggling.</p>
+        <p>And our door at AMRI is open &mdash; <strong>trust first, no pressure.</strong></p>
+      </section>
+
+    </div>
+
+    <section class="directory-section">
+      <div class="section-header">
+        <span class="step-num">07</span>
+        <h2>Trusted resources</h2>
+      </div>
+      <p class="res-intro">Culturally-responsive directories, affordable options, and community support.</p>
+      <ul class="res">
+        <li>
+          <b>Therapy for Black Girls</b>
+          <span>Find a therapist for Black women and girls, plus a getting-started guide.</span>
+        </li>
+        <li>
+          <b>Therapy for Black Men</b>
+          <span>Multiculturally-competent therapists for men of color &mdash; and info on financial help.</span>
+        </li>
+        <li>
+          <b>Melanin &amp; Mental Health</b>
+          <span>Culturally-competent clinicians for Black and Latinx communities.</span>
+        </li>
+        <li>
+          <b>NQTTCN</b>
+          <span>National Queer &amp; Trans Therapists of Color Network.</span>
+        </li>
+        <li>
+          <b>Inclusive Therapists</b>
+          <span>Culturally-responsive, social-justice-oriented care centering marginalized communities.</span>
+        </li>
+        <li>
+          <b>Open Path Collective</b>
+          <span>Affordable therapy sessions for those without adequate coverage.</span>
+        </li>
+        <li>
+          <b>The Loveland Foundation</b>
+          <span>Therapy vouchers and financial assistance for Black women and girls.</span>
+        </li>
+        <li>
+          <b>Black Men Heal</b>
+          <span>Free therapy sessions for men of color. (Search by name to apply.)</span>
+        </li>
+        <li>
+          <b>A Mindful Resource Inc.</b>
+          <span>Not sure where to begin? We’ll help you take the first step. <a href="mailto:info@amindfulresource.org">info@amindfulresource.org</a> &bull; <a href="tel:2145060691">214-506-0691</a></span>
+        </li>
+      </ul>
+    </section>
+
+    <section class="closing">
+      <div class="closing-text">
+        <h2>Starting is the hardest part. And you don’t have to do it perfectly.</h2>
+        <p>One call, one session, one brave step toward yourself. You are worth the care.</p>
+      </div>
+      <a class="btn" href="https://www.amindfulresourceinc.org" target="_blank" rel="noopener">Visit Our Website</a>
+    </section>
+
+    <p class="note">
+      Part of A Mindful Resource Inc.’s community wellness library &bull; amindfulresourceinc.org &bull; info@amindfulresource.org &bull; 214-506-0691. Care Before Crisis™ is a trademark of A Mindful Resource Inc. Organizations and resources named belong to their respective owners. This guide offers general information and support &mdash; not medical, legal, or clinical advice. For decisions about your health or care, talk with a qualified professional.
+    </p>
+
+  </main>
+
+</body>
+</html>
