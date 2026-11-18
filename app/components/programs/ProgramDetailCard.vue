@@ -1,25 +1,37 @@
 <script setup lang="ts">
-  import type { Program } from '../../data/programs'
+  import type { Program, ProgramSubOffering } from '../../data/programs'
+  import ProgramSignupModal from './ProgramSignupModal.vue'
+  import CareRequestModal from './CareRequestModal.vue'
 
   const props = defineProps<{
     program: Program
   }>()
 
-  const contactEmail = 'info@amindfulresource.org'
+  // Modal visibility state
+  const isSignupModalOpen = ref(false)
+  const isCareModalOpen = ref(false)
+  const activeSubOffering = ref<ProgramSubOffering | null>(null)
 
-  // Every program gets an actionable link: its own site if it has one,
-  // otherwise an email to AMRI with the program name as the subject.
-  const action = computed(() => {
-    const href = props.program.href
-    if (href && /^https?:/.test(href)) {
-      return { to: href, label: 'Visit website', external: true }
-    }
-    return {
-      to: `mailto:${contactEmail}?subject=${encodeURIComponent(props.program.name)}`,
-      label: 'Email us',
-      external: false,
-    }
+  const isCareConnections = computed(() => props.program.slug === 'care-connections')
+
+  const hasWebsite = computed(() => {
+    return Boolean(props.program.href && /^https?:/.test(props.program.href))
   })
+
+  function openSignupForMain() {
+    activeSubOffering.value = null
+    if (isCareConnections.value) {
+      isCareModalOpen.value = true
+    } else {
+      isSignupModalOpen.value = true
+    }
+  }
+
+  function openSignupForSub(sub: ProgramSubOffering) {
+    activeSubOffering.value = sub
+    // Per requirements: for now, subprograms display the generic modal
+    isSignupModalOpen.value = true
+  }
 
   const details = computed(() =>
     [
@@ -28,25 +40,39 @@
       { label: 'Delivery', text: props.program.delivery },
     ].filter((d) => d.text)
   )
-
-  function isExternalLink(link?: string) {
-    return Boolean(link && /^https?:/.test(link))
-  }
 </script>
 
 <template>
   <UCard class="border border-line bg-cream-light">
+    <!-- Header with Program Info and optional top-right "Visit Website" button -->
     <template #header>
-      <div class="space-y-1">
-        <p class="text-xs font-semibold tracking-wider text-gold-deep uppercase">
-          {{ program.category }}
-        </p>
-        <h3 class="text-2xl font-bold tracking-tight text-forest-deep">
-          {{ program.name }}
-        </h3>
-        <p class="text-base text-forest">
-          {{ program.tagline }}
-        </p>
+      <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+        <div class="space-y-1">
+          <p class="text-xs font-semibold tracking-wider text-gold-deep uppercase">
+            {{ program.category }}
+          </p>
+          <h3 class="text-2xl font-bold tracking-tight text-forest-deep">
+            {{ program.name }}
+          </h3>
+          <p class="text-base text-forest">
+            {{ program.tagline }}
+          </p>
+        </div>
+
+        <!-- 2.a: "Visit Website" button in the top right of the program card header if program has website -->
+        <div v-if="hasWebsite" class="shrink-0">
+          <UButton
+            :to="program.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="neutral"
+            variant="outline"
+            size="sm"
+            label="Visit Website"
+            icon="i-heroicons-arrow-top-right-on-square-20-solid"
+            trailing
+          />
+        </div>
       </div>
     </template>
 
@@ -60,7 +86,7 @@
         </p>
       </div>
 
-      <!-- Sub-offerings (if available) -->
+      <!-- Sub-offerings list -->
       <div
         v-if="program.subOfferings && program.subOfferings.length > 0"
         class="border-t border-line pt-4"
@@ -83,21 +109,15 @@
                   {{ sub.description }}
                 </p>
               </div>
-              <div v-if="sub.ctaLabel && sub.ctaLink" class="mt-2 shrink-0 sm:mt-0 sm:ml-4">
+              <div class="mt-2 shrink-0 sm:mt-0 sm:ml-4">
                 <UButton
-                  :to="sub.ctaLink"
-                  :target="isExternalLink(sub.ctaLink) ? '_blank' : undefined"
-                  :rel="isExternalLink(sub.ctaLink) ? 'noopener noreferrer' : undefined"
                   color="secondary"
                   variant="solid"
                   size="xs"
-                  :label="sub.ctaLabel"
-                  :icon="
-                    isExternalLink(sub.ctaLink)
-                      ? 'i-heroicons-arrow-top-right-on-square-20-solid'
-                      : 'i-heroicons-envelope-20-solid'
-                  "
+                  :label="sub.ctaLabel || 'Learn More'"
+                  icon="i-heroicons-arrow-right-20-solid"
                   trailing
+                  @click="openSignupForSub(sub)"
                 />
               </div>
             </div>
@@ -113,22 +133,26 @@
       </div>
     </div>
 
+    <!-- Footer: 2.b: Sign Up button in the same position as the former Email Us button -->
     <template #footer>
       <div class="flex justify-end">
         <UButton
-          :to="action.to"
-          :target="action.external ? '_blank' : undefined"
-          :rel="action.external ? 'noopener noreferrer' : undefined"
           color="primary"
-          :label="action.label"
-          :icon="
-            action.external
-              ? 'i-heroicons-arrow-top-right-on-square-20-solid'
-              : 'i-heroicons-envelope-20-solid'
-          "
+          :label="isCareConnections ? 'Request Support' : 'Sign Up'"
+          icon="i-heroicons-arrow-right-20-solid"
           trailing
+          @click="openSignupForMain"
         />
       </div>
     </template>
   </UCard>
+
+  <!-- Modals -->
+  <ProgramSignupModal
+    v-model:open="isSignupModalOpen"
+    :program="program"
+    :sub-offering="activeSubOffering"
+  />
+
+  <CareRequestModal v-model:open="isCareModalOpen" :program="program" />
 </template>

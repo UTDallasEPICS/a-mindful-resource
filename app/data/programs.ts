@@ -191,7 +191,7 @@ export const rawPrograms: ProgramDefinition[] = [
 
   // 5. Training & Education
   {
-    name: 'Care Before Crisis™ — Mental Health 101 & Community Wellness Training',
+    name: 'Care Before Crisis™ Training — Mental Health 101 & Community Wellness',
     categoryKey: 'trainingEducation',
     tagline: 'Practical education strengthening mental health awareness and reducing stigma.',
     audience: 'Community members, employers, campuses, faith communities, and organizations.',
