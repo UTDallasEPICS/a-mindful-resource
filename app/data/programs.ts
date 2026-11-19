@@ -38,6 +38,16 @@ export type ProgramCategory = (typeof PROGRAM_CATEGORIES)[number]['name']
 
 export type ProgramPublicationStatus = 'published' | 'under_review' | 'unpublished'
 
+export type ProgramFormType =
+  'generic' | 'care_request' | 'bro_chill_attendee' | 'bro_chill_facilitator' | 'bro_chill_checkin'
+
+export interface ProgramActionForm {
+  id: string
+  label: string
+  type: ProgramFormType
+  variant?: 'primary' | 'secondary' | 'outline'
+}
+
 export interface ProgramSubOffering {
   name: string
   description: string
@@ -56,6 +66,7 @@ export interface Program {
   slug: string
   href?: string
   status: ProgramPublicationStatus
+  actions?: ProgramActionForm[]
   subOfferings?: ProgramSubOffering[]
 }
 
@@ -87,11 +98,31 @@ export const rawPrograms: ProgramDefinition[] = [
     slug: 'bro-chill',
     href: 'https://brochill.org',
     status: 'published',
+    actions: [
+      {
+        id: 'bro-chill-attendee',
+        label: 'Join Circle (RSVP)',
+        type: 'bro_chill_attendee',
+        variant: 'primary',
+      },
+      {
+        id: 'bro-chill-facilitator',
+        label: 'Apply to Facilitate',
+        type: 'bro_chill_facilitator',
+        variant: 'outline',
+      },
+      {
+        id: 'bro-chill-checkin',
+        label: 'Circle Check-In',
+        type: 'bro_chill_checkin',
+        variant: 'outline',
+      },
+    ],
   },
 
   // 2. Youth & Families
   {
-    name: 'Real Talk. Real Skills.™ — Youth Emotional First Aid',
+    name: 'Real Talk. Real Skills.™',
     categoryKey: 'youthFamilies',
     tagline: 'Youth emotional first aid helping young people manage stress and support friends.',
     audience: 'Middle and high school students, with family and school involvement.',
@@ -159,6 +190,14 @@ export const rawPrograms: ProgramDefinition[] = [
     nextStep: 'Request Help Finding Support.',
     slug: 'care-connections',
     status: 'published',
+    actions: [
+      {
+        id: 'care-connections-request',
+        label: 'Request Support',
+        type: 'care_request',
+        variant: 'primary',
+      },
+    ],
     subOfferings: [
       {
         name: 'Recovery Navigation',
@@ -191,7 +230,7 @@ export const rawPrograms: ProgramDefinition[] = [
 
   // 5. Training & Education
   {
-    name: 'Care Before Crisis™ Training — Mental Health 101 & Community Wellness',
+    name: 'Care Before Crisis™ Mental Health 101 & Community Wellness Training',
     categoryKey: 'trainingEducation',
     tagline: 'Practical education strengthening mental health awareness and reducing stigma.',
     audience: 'Community members, employers, campuses, faith communities, and organizations.',
@@ -239,6 +278,19 @@ export const rawPrograms: ProgramDefinition[] = [
       'Equips non-clinical community responders with the confidence and practical tools needed during the crucial initial minutes of an emotional crisis or intense distress.',
     nextStep: 'Learn more about First 5 Minutes workshops.',
     slug: 'first-5-minutes',
+    status: 'under_review',
+  },
+  {
+    name: 'The Village First™',
+    categoryKey: 'trainingEducation',
+    tagline: 'Adult emotional first aid equipping caring adults to support youth in distress.',
+    audience: 'Parents, caregivers, educators, coaches, mentors, and youth-serving adults.',
+    delivery: 'Interactive cohort workshops and institutional training series.',
+    purpose:
+      'Equips the vital circle of adults around young people with the LEAF™ response framework to recognize emotional distress, provide supportive listening, and connect youth to help before challenges escalate.',
+    nextStep:
+      'Inquire about bringing The Village First™ to your school, organization, or community.',
+    slug: 'village-first',
     status: 'under_review',
   },
 ]

@@ -1,36 +1,79 @@
 <script setup lang="ts">
-  import type { Program, ProgramSubOffering } from '../../data/programs'
+  import type { Program, ProgramActionForm, ProgramSubOffering } from '../../data/programs'
   import ProgramSignupModal from './ProgramSignupModal.vue'
   import CareRequestModal from './CareRequestModal.vue'
+  import BroChillAttendeeModal from './BroChillAttendeeModal.vue'
+  import BroChillFacilitatorModal from './BroChillFacilitatorModal.vue'
+  import BroChillCheckinModal from './BroChillCheckinModal.vue'
 
   const props = defineProps<{
     program: Program
   }>()
 
-  // Modal visibility state
-  const isSignupModalOpen = ref(false)
+  // Modal visibility states
+  const isGenericSignupOpen = ref(false)
   const isCareModalOpen = ref(false)
-  const activeSubOffering = ref<ProgramSubOffering | null>(null)
+  const isBroChillAttendeeOpen = ref(false)
+  const isBroChillFacilitatorOpen = ref(false)
+  const isBroChillCheckinOpen = ref(false)
 
-  const isCareConnections = computed(() => props.program.slug === 'care-connections')
+  const activeSubOffering = ref<ProgramSubOffering | null>(null)
 
   const hasWebsite = computed(() => {
     return Boolean(props.program.href && /^https?:/.test(props.program.href))
   })
 
-  function openSignupForMain() {
+  // Dynamic actions configured for this program (or sensible defaults)
+  const availableActions = computed<ProgramActionForm[]>(() => {
+    if (props.program.actions && props.program.actions.length > 0) {
+      return props.program.actions
+    }
+    if (props.program.slug === 'care-connections') {
+      return [
+        {
+          id: 'care-request',
+          label: 'Request Support',
+          type: 'care_request',
+          variant: 'primary',
+        },
+      ]
+    }
+    return [
+      {
+        id: 'signup',
+        label: 'Sign Up',
+        type: 'generic',
+        variant: 'primary',
+      },
+    ]
+  })
+
+  function handleActionClick(action: ProgramActionForm) {
     activeSubOffering.value = null
-    if (isCareConnections.value) {
-      isCareModalOpen.value = true
-    } else {
-      isSignupModalOpen.value = true
+    switch (action.type) {
+      case 'bro_chill_attendee':
+        isBroChillAttendeeOpen.value = true
+        break
+      case 'bro_chill_facilitator':
+        isBroChillFacilitatorOpen.value = true
+        break
+      case 'bro_chill_checkin':
+        isBroChillCheckinOpen.value = true
+        break
+      case 'care_request':
+        isCareModalOpen.value = true
+        break
+      case 'generic':
+      default:
+        isGenericSignupOpen.value = true
+        break
     }
   }
 
   function openSignupForSub(sub: ProgramSubOffering) {
     activeSubOffering.value = sub
-    // Per requirements: for now, subprograms display the generic modal
-    isSignupModalOpen.value = true
+    // Sub-offerings open the generic sign-up modal
+    isGenericSignupOpen.value = true
   }
 
   const details = computed(() =>
@@ -59,7 +102,7 @@
           </p>
         </div>
 
-        <!-- 2.a: "Visit Website" button in the top right of the program card header if program has website -->
+        <!-- Top-right "Visit Website" button if program has website -->
         <div v-if="hasWebsite" class="shrink-0">
           <UButton
             :to="program.href"
@@ -133,15 +176,18 @@
       </div>
     </div>
 
-    <!-- Footer: 2.b: Sign Up button in the same position as the former Email Us button -->
+    <!-- Footer: Action buttons -->
     <template #footer>
-      <div class="flex justify-end">
+      <div class="flex flex-wrap items-center justify-end gap-3">
         <UButton
-          color="primary"
-          :label="isCareConnections ? 'Request Support' : 'Sign Up'"
+          v-for="action in availableActions"
+          :key="action.id"
+          :color="action.variant === 'secondary' ? 'secondary' : 'primary'"
+          :variant="action.variant === 'outline' ? 'outline' : 'solid'"
+          :label="action.label"
           icon="i-heroicons-arrow-right-20-solid"
           trailing
-          @click="openSignupForMain"
+          @click="handleActionClick(action)"
         />
       </div>
     </template>
@@ -149,10 +195,16 @@
 
   <!-- Modals -->
   <ProgramSignupModal
-    v-model:open="isSignupModalOpen"
+    v-model:open="isGenericSignupOpen"
     :program="program"
     :sub-offering="activeSubOffering"
   />
 
   <CareRequestModal v-model:open="isCareModalOpen" :program="program" />
+
+  <BroChillAttendeeModal v-model:open="isBroChillAttendeeOpen" :program="program" />
+
+  <BroChillFacilitatorModal v-model:open="isBroChillFacilitatorOpen" :program="program" />
+
+  <BroChillCheckinModal v-model:open="isBroChillCheckinOpen" :program="program" />
 </template>

@@ -15,10 +15,12 @@
   const DESTINATION_EMAIL = 'brianjayayo@gmail.com'
 
   const roles = [
-    { label: 'Participant', value: 'Participant' },
-    { label: 'Guardian', value: 'Guardian' },
-    { label: 'School', value: 'School' },
-    { label: 'Organization / Church / Team', value: 'Organization / Church / Team' },
+    { label: 'Participant / Individual', value: 'Participant / Individual' },
+    { label: 'Parent / Guardian', value: 'Parent / Guardian' },
+    { label: 'School / University', value: 'School / University' },
+    { label: 'Faith-Based Community / Church', value: 'Faith-Based Community / Church' },
+    { label: 'Workplace / Corporate', value: 'Workplace / Corporate' },
+    { label: 'Community Organization / Team', value: 'Community Organization / Team' },
     { label: 'Other', value: 'Other' },
   ]
 
@@ -26,7 +28,7 @@
     name: '',
     email: '',
     phone: '',
-    role: 'Participant',
+    role: 'Participant / Individual',
     notes: '',
   })
 
@@ -41,7 +43,7 @@
         form.name = ''
         form.email = ''
         form.phone = ''
-        form.role = 'Participant'
+        form.role = 'Participant / Individual'
         form.notes = ''
       }
     }
@@ -65,7 +67,7 @@
       `Name: ${form.name}`,
       `Email: ${form.email}`,
       `Phone: ${form.phone}`,
-      `Reaching out as: ${form.role}`,
+      `Reaching out as / Host setting: ${form.role}`,
       `Tell us about you:`,
       form.notes || '(None provided)',
     ]
@@ -177,13 +179,13 @@
             />
           </div>
 
-          <!-- Role -->
+          <!-- Role / Host Setting -->
           <div>
             <label
               for="signup-role"
               class="block text-xs font-semibold tracking-wider text-ink uppercase"
             >
-              I'm reaching out as <span class="text-red-600">*</span>
+              I'm reaching out as / Host setting <span class="text-red-600">*</span>
             </label>
             <select
               id="signup-role"
